@@ -6,8 +6,8 @@
     <title>Halaman Utama</title>
 </head>
 <body>
-    <h1>Selamat Datang di Halaman Utama</h1>
-    <p>Klik link di bawah ini untuk melihat informasi lebih lanjut tentang saya, termasuk link Facebook dan CV dengan foto.</p>
+    <h1>Welcome to My Site</h1>
+    <p>Klik link di bawah ini untuk melihat informasi lebih lanjut!</p>
     <a href="about.html">Kunjungi Halaman Tentang Saya</a>
 </body>
 </html>
@@ -16,22 +16,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Saya</title>
+    <title>About</title>
 </head>
 <body>
-    <h1>Tentang Saya</h1>
+    <h1>About Me</h1>
     
-    <!-- Link ke Facebook -->
-    <p>Link Facebook saya: <a href="https://www.facebook.com/yourprofile" target="_blank">Kunjungi Facebook Saya</a></p>
+    <!-- Link ke Instagram -->
+    <p>Link Instagram saya: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">Kunjungi Instagram Saya</a></p>
     
     <!-- Curriculum Vitae dengan Foto -->
     <h2>Curriculum Vitae</h2>
-    <img src="https://via.placeholder.com/200x200?text=Foto+Saya" alt="Foto Profil" style="width:200px; height:200px; border-radius:50%;">
-    <h3>Nama: John Doe</h3>
-    <p><strong>Pendidikan:</strong> Sarjana Teknik Informatika, Universitas ABC (2015-2019)</p>
-    <p><strong>Pengalaman Kerja:</strong> Software Engineer di XYZ Company (2020-sekarang)</p>
-    <p><strong>Keahlian:</strong> HTML, CSS, JavaScript, Python</p>
-    <p><strong>Kontak:</strong> email@example.com | +62 123 456 789</p>
+    <img src="images/profile.jpg" alt="Foto Profil" style="width:200px; height:200px; border-radius:50%;">
+    <h3>Nama: Ziqta Aruna Syahidah</h3>
+    <p><strong>Pendidikan:</strong> S-1 Library and Information Science</p>
+    <p><strong>TTL:</strong> Medan, 30 September 2005</p>
+    <p><strong>Pengalaman:</strong> Voluenteer Gerakan Sumut Mengajar Batch 17, UKMI Al-Ilmi FIB USU, MOSAIC FEST 2025, GAMADIKSI Islamic Competition 2024</p>
+    <p><strong>Kontak:</strong> syarunass@gmail.com | +62 1362 9369 86</p>
     
     <a href="index.html">Kembali ke Halaman Utama</a>
 </body>
@@ -49,20 +49,43 @@
     <!-- Elemen Video -->
     <h2>Video Contoh</h2>
     <video width="320" height="240" controls>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        Browser Anda tidak mendukung tag video.
+        <source src="video.MOV.mp4" type="video/mp4">
+        
     </video>
-    <p>Ini adalah video contoh dari W3Schools. Anda bisa menggantinya dengan video Anda sendiri.</p>
-    
-    <!-- Elemen Audio -->
-    <h2>Audio Contoh</h2>
-    <audio controls>
-        <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
-        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung tag audio.
-    </audio>
-    <p>Ini adalah audio contoh dari W3Schools. Anda bisa menggantinya dengan audio Anda sendiri.</p>
-    
-    <p>Untuk menggunakan file lokal, ganti atribut `src` dengan path file Anda (misalnya, `src="audio.mp3"`).</p>
+
+    <!-- FEEDBACK -->
+    <section class="feedback" id="feedback">
+      <h2>FEEDBACK</h2>
+
+      <form action="{{ url_for('form_create') }}" method="POST" class="feedback__form">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          required
+        >
+
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="text"
+          rows="6"
+          placeholder="Your feedback"
+          required
+        ></textarea>
+
+        <button type="submit">SEND</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Ziqta Aruna. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
