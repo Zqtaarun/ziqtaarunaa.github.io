@@ -1,187 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Portfolio</title>
-
-  <!-- Link CSS dihapus untuk versi tanpa styling -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Utama</title>
 </head>
-
 <body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <nav class="header__nav main-nav">
-      <ul class="main-nav__list">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#skills">MY SKILLS</a></li>
-        <li><a href="#media">MEDIA</a></li>  <!-- Tambahan link ke section MEDIA -->
-      </ul>
-    </nav>
-  </header>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- HOME -->
-    <section class="home" id="home">
-      <h1 class="home__title">Ziqta Aruna Syahidah</h1>
-      <p class="home__subtitle">Student of Library and Information Sains</p>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about" id="about">
-      <h2>ABOUT ME</h2>
-      <div class="about__info">
-        <p>
-          230709057, Universitas Sumatera Utara.
-        </p>
-        <img
-          src="../static/img/profile.png"
-          alt="Profile photo of Zqtaaruns"
-          width="250"
-          height="250"
-        >
-        <!-- Tambahan: Link ke Facebook dan CV -->
-        <p>Link Facebook saya: <a href="https://www.facebook.com/yourprofile" target="_blank">Kunjungi Facebook Saya</a></p>
-        <h3>Curriculum Vitae</h3>
-        <p><strong>Nama:</strong> Ziqta Aruna Syahidah</p>
-        <p><strong>Pendidikan:</strong> Student of Library and Information Science, Universitas Sumatera Utara</p>
-        <p><strong>Pengalaman:</strong> Mahasiswa aktif dengan minat di bidang teknologi informasi</p>
-        <p><strong>Keahlian:</strong> Python, Web Development, Database</p>
-        <p><strong>Kontak:</strong> email@example.com | +62 123 456 789</p>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="skills" id="skills">
-      <h2>MY SKILLS</h2>
-
-      <form action="/" method="POST" class="skills__form">
-        <ul class="skills__list">
-
-          <li class="skill">
-            <img src="../static/img/python.png" alt="Python" width="150" height="150">
-            <span>Python Development</span>
-            <button type="submit" name="button_python">SHOW PROJECT</button>
-          </li>
-
-          <li class="skill">
-            <img src="../static/img/discord.png" alt="Discord Bot" width="150" height="150">
-            <span>Discord Bot</span>
-            <button type="submit" name="button_discord">SHOW PROJECT</button>
-          </li>
-
-          <li class="skill">
-            <img src="../static/img/html.png" alt="HTML" width="150" height="150">
-            <span>Web Development</span>
-            <button type="submit" name="button_html">SHOW PROJECT</button>
-          </li>
-
-          <li class="skill">
-            <img src="../static/img/db.webp" alt="Database" width="150" height="150">
-            <span>Database</span>
-            <button type="submit" name="button_db">SHOW PROJECT</button>
-          </li>
-
-        </ul>
-      </form>
-
-      <!-- PROJECT OUTPUT -->
-      {% if button_python %}
-      <div class="project">
-        <img src="../static/img/python-project.png" alt="Python project" width="500">
-        <a href="https://github.com/Zqtaarun/Web_Dev?tab=readme-ov-file" target="_blank">
-          View on GitHub
-        </a>
-      </div>
-      {% endif %}
-
-      {% if button_discord %}
-      <div class="project">
-        <img src="../static/img/discord-bot.png" alt="Discord bot project" width="500">
-        <a href="https://github.com/Zqtaarun/discord-bot-elvan-kodland?tab=readme-ov-file" target="_blank">
-          View on GitHub
-        </a>
-      </div>
-      {% endif %}
-
-      {% if button_html %}
-      <div class="project">
-        <img src="../static/img/html-project.png" alt="HTML project" width="500">
-      </div>
-      {% endif %}
-
-      {% if button_db %}
-      <div class="project">
-        <img src="../static/img/document/db-project.png" alt="Database project" width="500">
-      </div>
-      {% endif %}
-
-    </section>
-
-    <!-- MEDIA (Section Baru untuk Audio dan Video) -->
-    <section class="media" id="media">
-      <h2>MEDIA</h2>
-      <p>Berikut adalah contoh penggunaan audio dan video di halaman ini.</p>
-      
-      <!-- Elemen Video -->
-      <h3>Video Contoh</h3>
-      <video width="320" height="240" controls>
+    <h1>Selamat Datang di Halaman Utama</h1>
+    <p>Klik link di bawah ini untuk melihat informasi lebih lanjut tentang saya, termasuk link Facebook dan CV dengan foto.</p>
+    <a href="about.html">Kunjungi Halaman Tentang Saya</a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Saya</title>
+</head>
+<body>
+    <h1>Tentang Saya</h1>
+    
+    <!-- Link ke Facebook -->
+    <p>Link Facebook saya: <a href="https://www.facebook.com/yourprofile" target="_blank">Kunjungi Facebook Saya</a></p>
+    
+    <!-- Curriculum Vitae dengan Foto -->
+    <h2>Curriculum Vitae</h2>
+    <img src="https://via.placeholder.com/200x200?text=Foto+Saya" alt="Foto Profil" style="width:200px; height:200px; border-radius:50%;">
+    <h3>Nama: John Doe</h3>
+    <p><strong>Pendidikan:</strong> Sarjana Teknik Informatika, Universitas ABC (2015-2019)</p>
+    <p><strong>Pengalaman Kerja:</strong> Software Engineer di XYZ Company (2020-sekarang)</p>
+    <p><strong>Keahlian:</strong> HTML, CSS, JavaScript, Python</p>
+    <p><strong>Kontak:</strong> email@example.com | +62 123 456 789</p>
+    
+    <a href="index.html">Kembali ke Halaman Utama</a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Media</title>
+</head>
+<body>
+    <h1>Halaman dengan Audio dan Video</h1>
+    
+    <!-- Elemen Video -->
+    <h2>Video Contoh</h2>
+    <video width="320" height="240" controls>
         <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
         Browser Anda tidak mendukung tag video.
-      </video>
-      <p>Ini adalah video contoh dari W3Schools. Ganti dengan video Anda sendiri (misalnya, file lokal seperti `../static/video/myvideo.mp4`).</p>
-      
-      <!-- Elemen Audio -->
-      <h3>Audio Contoh</h3>
-      <audio controls>
+    </video>
+    <p>Ini adalah video contoh dari W3Schools. Anda bisa menggantinya dengan video Anda sendiri.</p>
+    
+    <!-- Elemen Audio -->
+    <h2>Audio Contoh</h2>
+    <audio controls>
         <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
         <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung tag audio.
-      </audio>
-      <p>Ini adalah audio contoh dari W3Schools. Ganti dengan audio Anda sendiri (misalnya, file lokal seperti `../static/audio/myaudio.mp3`).</p>
-    </section>
-
-    <!-- FEEDBACK -->
-    <section class="feedback" id="feedback">
-      <h2>FEEDBACK</h2>
-
-      <form action="{{ url_for('form_create') }}" method="POST" class="feedback__form">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email"
-          required
-        >
-
-        <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="text"
-          rows="6"
-          placeholder="Your feedback"
-          required
-        ></textarea>
-
-        <button type="submit">SEND</button>
-      </form>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2024 Ziqta Aruna. All rights reserved.</p>
-  </footer>
-
+    </audio>
+    <p>Ini adalah audio contoh dari W3Schools. Anda bisa menggantinya dengan audio Anda sendiri.</p>
+    
+    <p>Untuk menggunakan file lokal, ganti atribut `src` dengan path file Anda (misalnya, `src="audio.mp3"`).</p>
 </body>
 </html>
