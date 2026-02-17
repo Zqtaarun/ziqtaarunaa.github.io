@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zqtaaruns_</title>
+    <title>Halaman Utama</title>
 </head>
 <body>
-    <h1>Welcome to My Site</h1>
-    
+    <h1>Selamat Datang di Situs Saya</h1>
+    <p>Klik link di bawah untuk informasi lebih lanjut.</p>
+    <ul>
+        <li><a href="about.html">Tentang Saya</a></li>
+        <li><a href="media.html">Halaman Media</a></li>
+    </ul>
 </body>
 </html>
 <!DOCTYPE html>
@@ -15,24 +19,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>Tentang Saya</title>
 </head>
 <body>
-    <h1>About Me</h1>
+    <h1>Tentang Saya</h1>
     
+    <!-- Link ke Instagram -->
+    <p>Link Instagram saya: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">Kunjungi Instagram Saya</a></p>
     
-    <p>My Instagram: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">Kunjungi Instagram Saya</a></p>
-    
-    
+    <!-- Curriculum Vitae dengan Foto -->
     <h2>Curriculum Vitae</h2>
-    <img src="https://drive.google.com/file/d/1xI-CPfzVNTslGqAj_MRVNexe1IKajMob/view?usp=sharing" alt="Foto Profil" style="width:200px; height:200px; border-radius:50%;">
-    <h3>Name: Ziqta Aruna Syahidah</h3>
-    <p><strong>Education:</strong> S-1 Library and Information Science</p>
-    <p><strong>Born:</strong> Medan, 30 September 2005</p>
-    <p><strong>Experiences:</strong> Voluenteer Gerakan Sumut Mengajar Batch 17, UKMI Al-Ilmi FIB USU, MOSAIC FEST 2025, GAMADIKSI Islamic Competition 2024</p>
-    <p><strong>Contact:</strong> syarunass@gmail.com | +62 1362 9369 86</p>
+    <img src="https://drive.google.com/uc?export=view&id=1xI-CPfzVNTslGqAj_MRVNexe1IKajMob" alt="Foto Profil" style="width:200px; height:200px; border-radius:50%;">
+    <h3>Nama: Ziqta Aruna Syahidah</h3>
+    <p><strong>Pendidikan:</strong> S-1 Library and Information Science</p>
+    <p><strong>TTL:</strong> Medan, 30 September 2005</p>
+    <p><strong>Pengalaman:</strong> Volunteer Gerakan Sumut Mengajar Batch 17, UKMI Al-Ilmi FIB USU, MOSAIC FEST 2025, GAMADIKSI Islamic Competition 2024</p>
+    <p><strong>Kontak:</strong> syarunass@gmail.com | +62 1362 9369 86</p>
     
-    <a href="index.html">Back to Main Page</a>
+    <a href="index.html">Kembali ke Halaman Utama</a>
 </body>
 </html>
 <!DOCTYPE html>
@@ -40,53 +44,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Page</title>
+    <title>Halaman Media</title>
 </head>
 <body>
-    <h1>Media Page</h1>
+    <h1>Halaman Media</h1>
     
-    <!-- Elemen Video -->
-    <video width="320" height="240" controls>
-        <video width="320" height="240" controls>
-    <source src="video/video.MOV.mp4" title="video/MOV.mp4" >
-  Browser Anda tidak mendukung tag video.
-</video>
-        
-    </video>
-
-    <!-- FEEDBACK -->
-    <section class="feedback" id="feedback">
-      <h2>FEEDBACK</h2>
-
-      <form action="{{ url_for('form_create') }}" method="POST" class="feedback__form">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email"
-          required
-        >
-
-        <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="text"
-          rows="6"
-          placeholder="Your feedback"
-          required
-        ></textarea>
-
-        <button type="submit">SEND</button>
-      </form>
+    <!-- Elemen Video (Embed YouTube) -->
+    <h2>Video Contoh</h2>
+    <iframe width="320" height="240" src="https://www.youtube.com/embed/Ab7SjyLMzYA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <p>Ini adalah video dari YouTube. Jika ingin video lokal, ganti dengan file MP4.</p>
+    
+    <!-- FEEDBACK (Form Statis - Tidak Mengirim Data) -->
+    <section id="feedback">
+        <h2>FEEDBACK</h2>
+        <form class="feedback__form">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email" required>
+            
+            <label for="message">Message</label>
+            <textarea id="message" name="text" rows="6" placeholder="Your feedback" required></textarea>
+            
+            <button type="submit">SEND</button>
+        </form>
+        <p><em>Catatan: Form ini statis dan tidak mengirim data. Untuk fungsionalitas penuh, gunakan server seperti Flask.</em></p>
     </section>
 
-  </main>
+    <a href="index.html">Kembali ke Halaman Utama</a>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2026 Ziqta Aruna. All rights reserved.</p>
-  </footer>
-
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Ziqta Aruna. All rights reserved.</p>
+    </footer>
 </body>
 </html>
