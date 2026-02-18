@@ -112,7 +112,16 @@
         }
     });
 </script>
+    window.onload = function() {
+    const user = localStorage.getItem("loggedInUser");
+    if(!user) {
+        document.getElementById("media").style.display = "none";
+    }
+}
+document.getElementById("media").style.display = "block";
+
 </html>
+
 
 
 
