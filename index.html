@@ -3,7 +3,7 @@ z<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Ziqta Aruna</title>
+    <title>zqtaaruns library</title>
     <style>
 
 /* ================= RESET ================= */
@@ -161,13 +161,14 @@ footer {
 </head>
 <body>
     <nav>
-        <a href="#home">Halaman Utama</a> |
-        <a href="#about">Tentang Saya</a> |
-        <a href="#media">Halaman Media</a>
+        <a href="#home">Beranda</a> |
+        <a href="#about">About Me</a> |
+        <a href="#media">Media</a> |
+        <a href="login.html" target="_blank">Login</a>
     </nav>
 
     <section id="home">
-        <h1>Selamat Datang di Situs Saya</h1>
+        <h1>Welcome to My Books Stuff</h1>
         <ul>
          
         </ul>
@@ -177,16 +178,16 @@ footer {
         <h1>Tentang Saya</h1>
         
         <!-- Link ke Instagram -->
-        <p>Link Instagram saya: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">zqtarunaa_</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">zqtarunaa_</a></p>
         
         <h2>Curriculum Vitae</h2>
-        </p>Link CV saya untuk perkenalan lebih lanjut:<a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"> MY CV </a></p>
+        </p>CV saya untuk perkenalan lebih lanjut:<a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank"> MY CV </a></p>
         
-        <a href="#home">Kembali ke Halaman Utama</a>
+        <a href="#home">Back</a>
     </section>
 
     <section id="media">
-        <h1>Halaman Media</h1>
+        <h1>Media</h1>
         
         <!-- Elemen Video -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Ab7SjyLMzYA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -206,15 +207,31 @@ footer {
             </form>
         </section>
 
-        <a href="#home">Kembali ke Halaman Utama</a>
+        <a href="#home">Back</a>
 
         <!-- FOOTER -->
         <footer>
             <p>© 2026 Ziqta Aruna. All rights reserved.</p>
         </footer>
-    </section>
+        <script>
+const slides = document.querySelectorAll('.slide');
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+}, 6000);
+
+window.addEventListener("scroll", function(){
+    let header = document.getElementById("navbar");
+    header.classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+        
 </body>
 </html>
+
 
 
 
