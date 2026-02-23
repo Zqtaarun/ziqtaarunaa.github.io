@@ -6,106 +6,73 @@
 <title>Ziqta Aruna Library</title>
 
 <style>
-
-/* RESET */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
 }
 
 body {
-    background: #f4f7fb;
-    color: #333;
+    background:#f4f7fb;
 }
 
 /* NAV */
 nav {
-    background: #1e3a8a;
-    padding: 15px;
-    text-align: center;
+    background:#1e3a8a;
+    padding:15px;
+    text-align:center;
 }
 
 nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: 500;
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
 }
 
 nav a:hover {
-    color: #93c5fd;
+    color:#93c5fd;
+}
+
+/* USER INFO */
+#userInfo {
+    color:white;
+    margin-top:10px;
 }
 
 /* SECTION */
 section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-h1 {
-    color: #1e3a8a;
-    margin-bottom: 20px;
+    padding:60px;
+    text-align:center;
 }
 
 /* CARD */
 .card {
-    background: white;
-    max-width: 500px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background:white;
+    padding:30px;
+    max-width:500px;
+    margin:auto;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* FORM */
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+/* MEDIA */
+#media {
+    display:none;
 }
 
-input:focus, textarea:focus {
-    border-color: #2563eb;
-    outline: none;
-}
-
+/* BUTTON */
 button {
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    cursor: pointer;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
 }
 
 button:hover {
-    background: #1e40af;
-}
-
-/* HIDE MEDIA */
-#media {
-    display: none;
-}
-
-/* FOOTER */
-footer {
-    background: #1e3a8a;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    nav a {
-        display: block;
-        margin: 10px 0;
-    }
+    background:#1e40af;
 }
 
 </style>
@@ -113,159 +80,59 @@ footer {
 
 <body>
 
-<!-- NAV -->
 <nav>
     <a href="#home">Beranda</a>
     <a href="#about">About</a>
     <a href="#media">Media</a>
+    <a href="login.html">Login</a>
+
+    <div id="userInfo"></div>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-    <h1>Welcome to My Library</h1>
-    <p>Tempat berbagi buku dan pengetahuan 📚</p>
+    <h1>Welcome to My Library 📚</h1>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
     <div class="card">
         <h1>Tentang Saya</h1>
-        <p>Instagram:
-            <a href="https://www.instagram.com/zqtarunaa_" target="_blank">
-                @zqtarunaa_
-            </a>
-        </p>
-
-        <h2>Curriculum Vitae</h2>
-        <p>
-            <a href="#" target="_blank">Lihat CV Saya</a>
-        </p>
+        <p>Instagram: @zqtarunaa_</p>
     </div>
 </section>
 
-<!-- AUTH -->
-<section>
-    <div class="card">
-        <h2 id="formTitle">Login</h2>
-
-        <form id="authForm">
-            <input type="text" id="nama" placeholder="Nama Lengkap" required>
-            <input type="text" id="nim" placeholder="NIM" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-
-        <p id="toggleText">
-            Belum punya akun?
-            <span id="toggleAuth" style="color:blue;cursor:pointer;">Daftar</span>
-        </p>
-
-        <button id="logoutBtn" style="display:none;">Logout</button>
-        <p id="authMessage"></p>
-    </div>
-</section>
-
-<!-- MEDIA -->
 <section id="media">
     <div class="card">
-        <h1>Media</h1>
+        <h1>Media (Khusus Login)</h1>
 
         <iframe width="100%" height="250"
             src="https://www.youtube.com/embed/Ab7SjyLMzYA"
             style="border:none; border-radius:12px;"
             allowfullscreen>
         </iframe>
+
+        <br><br>
+        <button onclick="logout()">Logout</button>
     </div>
 </section>
-
-<!-- FEEDBACK -->
-<section id="feedback">
-    <div class="card">
-        <h2>Feedback</h2>
-
-        <form>
-            <input type="email" placeholder="Email" required>
-            <textarea rows="5" placeholder="Pesan"></textarea>
-            <button>Kirim</button>
-        </form>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 Ziqta Aruna</p>
-</footer>
 
 <script>
 
-let isLoginMode = true;
+// CEK LOGIN
+window.onload = function(){
+    const user = JSON.parse(localStorage.getItem("userLogin"));
 
-const form = document.getElementById("authForm");
-const toggleBtn = document.getElementById("toggleAuth");
-const formTitle = document.getElementById("formTitle");
-const logoutBtn = document.getElementById("logoutBtn");
-const authMessage = document.getElementById("authMessage");
-
-// TOGGLE
-toggleBtn.onclick = () => {
-    isLoginMode = !isLoginMode;
-
-    formTitle.innerText = isLoginMode ? "Login" : "Register";
-    form.querySelector("button").innerText = isLoginMode ? "Login" : "Daftar";
-    toggleBtn.innerText = isLoginMode ? "Daftar" : "Login";
-
-    document.getElementById("toggleText").childNodes[0].textContent =
-        isLoginMode ? "Belum punya akun? " : "Sudah punya akun? ";
-};
-
-// SUBMIT
-form.onsubmit = (e) => {
-    e.preventDefault();
-
-    const nama = document.getElementById("nama").value;
-    const nim = document.getElementById("nim").value;
-    const password = document.getElementById("password").value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || {};
-
-    if(isLoginMode){
-        if(users[nim] && users[nim].password === password){
-            localStorage.setItem("loggedInUser", nim);
-            authMessage.innerText = "Login berhasil!";
-            logoutBtn.style.display = "block";
-            document.getElementById("media").style.display = "block";
-        } else {
-            authMessage.innerText = "Login gagal!";
-        }
-    } else {
-        if(users[nim]){
-            authMessage.innerText = "User sudah ada!";
-        } else {
-            users[nim] = { nama, password };
-            localStorage.setItem("users", JSON.stringify(users));
-            authMessage.innerText = "Berhasil daftar!";
-        }
+    if(user){
+        document.getElementById("media").style.display = "block";
+        document.getElementById("userInfo").innerHTML =
+            "Halo, " + user.nama;
     }
-
-    form.reset();
-};
+}
 
 // LOGOUT
-logoutBtn.onclick = () => {
-    localStorage.removeItem("loggedInUser");
-    logoutBtn.style.display = "none";
-    document.getElementById("media").style.display = "none";
-    authMessage.innerText = "Logout berhasil!";
-};
-
-// SESSION CHECK
-window.onload = () => {
-    const user = localStorage.getItem("loggedInUser");
-    if(user){
-        logoutBtn.style.display = "block";
-        document.getElementById("media").style.display = "block";
-    }
-};
+function logout(){
+    localStorage.removeItem("userLogin");
+    location.reload();
+}
 
 </script>
 
