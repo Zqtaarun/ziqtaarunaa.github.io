@@ -6,309 +6,187 @@
 <title>Ziqta Aruna Library</title>
 
 <style>
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#f4f7fb}
+html{scroll-behavior:smooth}
 
-body {
-    background:#f4f7fb;
-}
+nav{background:#1e3a8a;padding:15px;text-align:center}
+nav a{color:white;margin:0 15px;text-decoration:none}
+nav a:hover{color:#93c5fd}
+#userInfo{color:white;margin-top:10px}
 
-/* NAV */
-nav {
-    background:#1e3a8a;
-    padding:15px;
-    text-align:center;
-}
+section{padding:60px 20px;text-align:center}
+.card{background:white;padding:30px;max-width:500px;margin:auto;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.08)}
 
-nav a {
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-}
+input,textarea{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ddd}
+button{padding:12px;width:100%;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer}
+button:hover{background:#1e40af}
 
-nav a:hover {
-    color:#93c5fd;
-}
-
-#userInfo {
-    color:white;
-    margin-top:10px;
-}
-
-/* SECTION */
-section {
-    padding:60px 20px;
-    text-align:center;
-}
-
-/* CARD */
-.card {
-    background:white;
-    padding:30px;
-    max-width:500px;
-    margin:auto;
-    border-radius:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* MEDIA */
-#media {
-    display:none;
-}
-
-/* FORM */
-input, textarea {
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:8px;
-    border:1px solid #ddd;
-}
-
-button {
-    padding:12px;
-    width:100%;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-}
-
-button:hover {
-    background:#1e40af;
-}
-
-footer {
-    background:#1e3a8a;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
+footer{background:#1e3a8a;color:white;padding:20px;text-align:center}
+#media{display:none}
 </style>
 </head>
 
 <body>
-
-<!-- NAV -->
 <nav>
-    <a href="#home">Beranda</a>
-    <a href="#about">About</a>
-    <a href="#media">Media</a>
-    <a href="#feedback">Feedback</a>
-    <a href="login.html">Login</a>
-
-    <div id="userInfo"></div>
+<a href="#home">Beranda</a>
+<a href="#about">About</a>
+<a href="#media">Media</a>
+<a href="#feedback">Feedback</a>
+<a href="login.html">Login</a>
+<div id="userInfo"></div>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-    <h1>Welcome to My Library 📚</h1>
+<h1>Welcome to My Library 📚</h1>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
-    <div class="card">
-        <h1>Tentang Saya</h1>
-
-         <p>Instagram: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">zqtarunaa_</a></p>
-
-        <h3>Curriculum Vitae</h3>
-        <p>
-            <a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit" target="_blank">
-                👉 Lihat CV Saya
-            </a>
-        </p>
-    </div>
+<div class="card">
+<h2>Tentang Saya</h2>
+<p>Instagram: <a href="https://www.instagram.com/zqtarunaa_" target="_blank" rel="noopener noreferrer">zqtarunaa_</a></p>
+</div>
 </section>
 
-<!-- MEDIA (LOGIN ONLY) -->
 <section id="media">
-    <div class="card">
-        <h1>Media</h1>
-
-        <!-- YOUTUBE -->
-        <iframe width="100%" height="250"
-            src="<iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/Rik8YhvH09M?si=tSypM2VVSfGPyaCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" 
-        </iframe>
-
-        <br><br>
-        <button onclick="logout()">Logout</button>
-    </div>
+<div class="card">
+<h2>Media</h2>
+<iframe width="100%" height="250" src="https://www.youtube.com/embed/Rik8YhvH09M" frameborder="0" allowfullscreen></iframe>
+<br><br>
+<button onclick="logout()">Logout</button>
+</div>
 </section>
 
-<!-- FEEDBACK -->
-<section class="feedback" id="feedback">
-      <h2>FEEDBACK</h2>
+<section id="feedback">
+<div class="card">
+<h2>Feedback</h2>
+<form onsubmit="kirimFeedback(event)">
+<input type="email" id="email" placeholder="Email" required>
+<textarea id="message" rows="5" placeholder="Pesan" required></textarea>
+<button type="submit">Kirim</button>
+</form>
+<p id="notif"></p>
+</div>
+</section>
 
-      <form action="{{ url_for('form_create') }}" method="POST" class="feedback__form">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Your email"
-          required
-        >
-
-        <label for="message">Message</label>
-        <textarea
-          id="message"
-          name="text"
-          rows="6"
-          placeholder="Your feedback"
-          required
-        ></textarea>
-
-        <button type="submit">SEND</button>
-      </form>
-    </section>
-
-  </main>
-    
-<!-- FOOTER -->
 <footer>
-    <p>© 2026 Ziqta Aruna</p>
+<p>© 2026 Ziqta Aruna</p>
 </footer>
 
 <script>
-
-// CEK LOGIN
-window.onload = function(){
-    const user = JSON.parse(localStorage.getItem("userLogin"));
-
-    if(user){
-        document.getElementById("media").style.display = "block";
-        document.getElementById("userInfo").innerHTML =
-            "Halo, " + user.nama;
-    }
+window.onload=function(){
+const user=JSON.parse(localStorage.getItem("userLogin"));
+if(user){
+document.getElementById("media").style.display="block";
+document.getElementById("userInfo").innerText="Halo, "+user.nama;
+}
 }
 
-// LOGOUT
 function logout(){
-    localStorage.removeItem("userLogin");
-    location.reload();
+localStorage.removeItem("userLogin");
+location.reload();
 }
 
-// FEEDBACK
 function kirimFeedback(e){
-    e.preventDefault();
+e.preventDefault();
+const email=document.getElementById("email").value;
+const message=document.getElementById("message").value;
 
-    const email = document.getElementById("email").value;
-    const pesan = document.getElementById("pesan").value;
+let data=JSON.parse(localStorage.getItem("feedback"))||[];
+data.push({email,message});
+localStorage.setItem("feedback",JSON.stringify(data));
 
-    let data = JSON.parse(localStorage.getItem("feedback")) || [];
-
-    data.push({ email, pesan });
-
-    localStorage.setItem("feedback", JSON.stringify(data));
-
-    document.getElementById("notif").innerText =
-        "Feedback berhasil dikirim! Terima kasih 🙌";
-
-    e.target.reset();
+document.getElementById("notif").innerText="Feedback terkirim!";
+e.target.reset();
 }
-
 </script>
-
 </body>
 </html>
+
+
+<!-- ================= LOGIN.HTML ================= -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login</title>
-
 <style>
-body {
-    background:#f4f7fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    font-family:sans-serif;
-}
-
-.box {
-    background:white;
-    padding:40px;
-    border-radius:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-    width:300px;
-    text-align:center;
-}
-
-input {
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:8px;
-    border:1px solid #ddd;
-}
-
-button {
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#2563eb;
-    color:white;
-}
-
-button:hover {
-    background:#1e40af;
-}
-
-a {
-    display:block;
-    margin-top:15px;
-    text-decoration:none;
-    color:#2563eb;
-}
-
+body{background:#f4f7fb;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{background:white;padding:30px;border-radius:16px;width:300px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ddd}
+button{width:100%;padding:12px;border:none;border-radius:8px;background:#2563eb;color:white}
 </style>
 </head>
-
 <body>
-
 <div class="box">
-    <h2>Login</h2>
-
-    <form id="form">
-        <input type="text" id="nama" placeholder="Nama" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="hp" placeholder="No HP" required>
-        <button type="submit">Masuk</button>
-    </form>
-
-    <a href="index.html">← Kembali</a>
+<h2>Login</h2>
+<form id="form">
+<input type="text" id="nama" placeholder="Nama" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="hp" placeholder="No HP" required>
+<button type="submit">Masuk</button>
+</form>
 </div>
-
 <script>
-
-document.getElementById("form").onsubmit = function(e){
-    e.preventDefault();
-
-    const user = {
-        nama: document.getElementById("nama").value,
-        email: document.getElementById("email").value,
-        hp: document.getElementById("hp").value
-    };
-
-    localStorage.setItem("userLogin", JSON.stringify(user));
-
-    alert("Login berhasil!");
-
-    window.location.href = "index.html";
+document.getElementById("form").onsubmit=function(e){
+e.preventDefault();
+const user={
+nama:document.getElementById("nama").value,
+email:document.getElementById("email").value,
+hp:document.getElementById("hp").value
+};
+localStorage.setItem("userLogin",JSON.stringify(user));
+window.location.href="index.html";
 }
-
 </script>
-
 </body>
 </html>
 
+
+<!-- ================= ADMIN.HTML ================= -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<style>
+body{font-family:sans-serif;background:#f4f7fb;padding:20px}
+h1{text-align:center;margin-bottom:20px}
+.card{background:white;padding:20px;margin:10px auto;max-width:600px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+button{margin-top:10px;padding:8px;border:none;border-radius:6px;background:red;color:white;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>Dashboard Feedback</h1>
+<div id="list"></div>
+
+<script>
+function loadData(){
+let data=JSON.parse(localStorage.getItem("feedback"))||[];
+let container=document.getElementById("list");
+container.innerHTML="";
+
+data.forEach((item,index)=>{
+container.innerHTML+=`
+<div class="card">
+<p><b>Email:</b> ${item.email}</p>
+<p><b>Pesan:</b> ${item.message}</p>
+<button onclick="hapus(${index})">Hapus</button>
+</div>
+`;
+});
+}
+
+function hapus(i){
+let data=JSON.parse(localStorage.getItem("feedback"))||[];
+data.splice(i,1);
+localStorage.setItem("feedback",JSON.stringify(data));
+loadData();
+}
+
+loadData();
+</script>
+</body>
+</html>
