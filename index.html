@@ -115,7 +115,7 @@ footer {
     <div class="card">
         <h1>Tentang Saya</h1>
 
-        <p>Instagram: @zqtarunaa_</p>
+         <p>Instagram: <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">zqtarunaa_</a></p>
 
         <h3>Curriculum Vitae</h3>
         <p>
@@ -133,7 +133,7 @@ footer {
 
         <!-- YOUTUBE -->
         <iframe width="100%" height="250"
-            src="<iframe width="560" height="315" src="https://www.youtube.com/embed/Rik8YhvH09M?si=tSypM2VVSfGPyaCC" 
+            src="<iframe width="560" height="315" src="<iframe width="560" height="315" src="https://www.youtube.com/embed/Rik8YhvH09M?si=tSypM2VVSfGPyaCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" 
         </iframe>
 
         <br><br>
@@ -142,20 +142,34 @@ footer {
 </section>
 
 <!-- FEEDBACK -->
-<section id="feedback">
-    <div class="card">
-        <h2>Feedback</h2>
+<section class="feedback" id="feedback">
+      <h2>FEEDBACK</h2>
 
-        <form onsubmit="kirimFeedback(event)">
-            <input type="email" id="email" placeholder="Email kamu" required>
-            <textarea id="pesan" rows="5" placeholder="Tulis feedback..." required></textarea>
-            <button type="submit">Kirim</button>
-        </form>
+      <form action="{{ url_for('form_create') }}" method="POST" class="feedback__form">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          required
+        >
 
-        <p id="notif"></p>
-    </div>
-</section>
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          name="text"
+          rows="6"
+          placeholder="Your feedback"
+          required
+        ></textarea>
 
+        <button type="submit">SEND</button>
+      </form>
+    </section>
+
+  </main>
+    
 <!-- FOOTER -->
 <footer>
     <p>© 2026 Ziqta Aruna</p>
@@ -297,3 +311,4 @@ document.getElementById("form").onsubmit = function(e){
 
 </body>
 </html>
+
