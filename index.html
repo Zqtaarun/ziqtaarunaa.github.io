@@ -21,7 +21,6 @@ body{
     overflow-x:hidden;
 }
 
-/* NAV */
 nav{
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(15px);
@@ -48,18 +47,16 @@ nav a:hover{
     color:#38bdf8;
 }
 
-/* SECTION */
 section{
     padding:80px 20px;
     text-align:center;
     display:none;
 }
 
-#home,#about,#cv,#feedback{
+#home,#about,#feedback{
     display:block;
 }
 
-/* CARD */
 .card{
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(20px);
@@ -105,7 +102,27 @@ button:hover{
     box-shadow:0 0 20px #38bdf8;
 }
 
-/* MODAL */
+.error{
+    color:#f87171;
+    font-size:14px;
+}
+
+.sosmed-btn{
+    display:inline-block;
+    margin:8px;
+    padding:10px 16px;
+    border-radius:12px;
+    background:rgba(56,189,248,0.15);
+    text-decoration:none;
+    color:#38bdf8;
+    transition:.3s;
+}
+
+.sosmed-btn:hover{
+    background:#38bdf8;
+    color:white;
+}
+
 .modal{
     display:none;
     position:fixed;
@@ -114,12 +131,6 @@ button:hover{
     backdrop-filter:blur(8px);
     justify-content:center;
     align-items:center;
-    animation:fade .3s ease;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
 }
 
 .modal-content{
@@ -127,13 +138,6 @@ button:hover{
     padding:40px;
     width:350px;
     border-radius:20px;
-    border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 0 40px rgba(56,189,248,.4);
-}
-
-.error{
-    color:#f87171;
-    font-size:14px;
 }
 
 footer{
@@ -154,15 +158,43 @@ footer{
     <h1>Welcome to My Library 📚</h1>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+    <div class="card">
+        <h1>About Me</h1>
+        <p>Halo 👋 Ini adalah halaman portfolio saya.</p>
+
+        <div id="cvAbout" style="margin-top:20px;"></div>
+        <div id="sosmedAbout" style="margin-top:20px;"></div>
+    </div>
+</section>
+
+<!-- MEDIA -->
 <section id="media">
     <div class="card">
         <h1>Media</h1>
         <div id="videoContainer"></div>
         <br>
-        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
+        <input type="text" id="youtubeLink" placeholder="Masukkan link YouTube (https://youtu.be/xxxx)">
         <button onclick="tambahVideo()">Tambah Video</button>
         <br><br>
         <button onclick="logout()">Logout</button>
+    </div>
+</section>
+
+<!-- PROFILE TOOLS (LOGIN ONLY) -->
+<section id="profileTools">
+    <div class="card">
+        <h2>Upload CV</h2>
+        <input type="file" id="cvFile" accept=".pdf">
+        <button onclick="uploadCV()">https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton</button>
+
+        <hr style="margin:30px 0;border:1px solid rgba(255,255,255,0.1);">
+
+        <h2>Tambah Sosial Media</h2>
+        <input type="text" id="@zqtarunaa_" placeholder="Instagram">
+        <input type="text" id="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" placeholder="Sosial Media">
+        <button onclick="tambahSosmed()">Tambah Sosmed</button>
     </div>
 </section>
 
@@ -206,24 +238,23 @@ footer{
 </footer>
 
 <script>
-// MODAL
 function openModal(){
-    document.getElementById("authModal").style.display="flex";
-}
-function closeModal(){
-    document.getElementById("authModal").style.display="none";
+    authModal.style.display="flex";
 }
 
-// CEK LOGIN
 window.onload=function(){
     const user=JSON.parse(localStorage.getItem("userLogin"));
+
+    loadCVAbout();
+    loadSosmedAbout();
+
     if(user){
-        document.getElementById("media").style.display="block";
-        document.getElementById("userInfo").innerHTML="Halo, "+user.nama;
+        media.style.display="block";
+        profileTools.style.display="block";
+        userInfo.innerHTML="Halo, "+user.nama;
     }
 }
 
-// REGISTER
 function register(){
     const nama=regNama.value.trim();
     const email=regEmail.value.trim();
@@ -235,7 +266,6 @@ function register(){
     }
 
     let users=JSON.parse(localStorage.getItem("users"))||[];
-
     users.push({nama,email,password});
     localStorage.setItem("users",JSON.stringify(users));
 
@@ -243,11 +273,9 @@ function register(){
     showLogin();
 }
 
-// LOGIN
 function login(){
     const email=loginEmail.value.trim();
     const password=loginPassword.value.trim();
-
     let users=JSON.parse(localStorage.getItem("users"))||[];
 
     const user=users.find(u=>u.email===email);
@@ -267,42 +295,94 @@ function login(){
     location.reload();
 }
 
-// TOGGLE
 function showRegister(){
     loginForm.style.display="none";
     registerForm.style.display="block";
 }
+
 function showLogin(){
     registerForm.style.display="none";
     loginForm.style.display="block";
 }
 
-// LOGOUT
 function logout(){
     localStorage.removeItem("userLogin");
     location.reload();
 }
 
-// YOUTUBE
+/* YOUTUBE */
 function tambahVideo(){
     const link=youtubeLink.value;
-    const id=extractVideoID(link);
-    if(!id) return;
+    const reg=/((youtu.be\/)|(v=))([^&]+)/;
+    const match=link.match(reg);
+    if(!match) return;
 
     videoContainer.innerHTML=
     `<iframe width="100%" height="250"
-    src="https://www.youtube.com/embed/${id}"
+    src="https://www.youtube.com/embed/${match[4]}"
     style="border:none;border-radius:12px;"
     allowfullscreen></iframe>`;
 }
 
-function extractVideoID(url){
-    const reg=/((youtu.be\/)|(v=))([^&]+)/;
-    const match=url.match(reg);
-    return match?match[4]:null;
+/* CV */
+function uploadCV(){
+    const file=cvFile.files[0];
+    if(!file || file.type!=="application/pdf"){
+        alert("Upload file PDF");
+        return;
+    }
+
+    const reader=new FileReader();
+    reader.onload=function(e){
+        localStorage.setItem("userCV",e.target.result);
+        loadCVAbout();
+    }
+    reader.readAsDataURL(file);
 }
 
-// FEEDBACK
+function loadCVAbout(){
+    const cv=localStorage.getItem("userCV");
+    if(cv){
+        cvAbout.innerHTML=
+        `<h3>Curriculum Vitae</h3>
+        <a href="${cv}" download="CV.pdf">
+        <button style="margin-top:10px;">Download CV</button>
+        </a>`;
+    }else{
+        cvAbout.innerHTML="<p style='color:#94a3b8;'>CV belum tersedia.</p>";
+    }
+}
+
+/* SOSMED */
+function tambahSosmed(){
+    const nama=sosmedNama.value.trim();
+    const link=sosmedLink.value.trim();
+    if(!nama || !link) return;
+
+    let list=JSON.parse(localStorage.getItem("sosmedList"))||[];
+    list.push({nama,link});
+    localStorage.setItem("sosmedList",JSON.stringify(list));
+
+    sosmedNama.value="";
+    sosmedLink.value="";
+    loadSosmedAbout();
+}
+
+function loadSosmedAbout(){
+    const list=JSON.parse(localStorage.getItem("sosmedList"))||[];
+    sosmedAbout.innerHTML="<h3>Sosial Media</h3>";
+
+    if(list.length===0){
+        sosmedAbout.innerHTML+="<p style='color:#94a3b8;'>Belum ada sosial media.</p>";
+        return;
+    }
+
+    list.forEach(item=>{
+        sosmedAbout.innerHTML+=
+        `<a class="sosmed-btn" href="${item.link}" target="_blank">${item.nama}</a>`;
+    });
+}
+
 function kirimFeedback(e){
     e.preventDefault();
     notif.innerText="Terima kasih atas feedbacknya 🙌";
