@@ -319,7 +319,7 @@ function tambahVideo(){
 
     videoContainer.innerHTML=
     `<iframe width="100%" height="250"
-    src="https://www.youtube.com/embed/${match[4]}"
+    src="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
     style="border:none;border-radius:12px;"
     allowfullscreen></iframe>`;
 }
@@ -328,7 +328,7 @@ function tambahVideo(){
 function uploadCV(){
     const file=cvFile.files[0];
     if(!file || file.type!=="application/pdf"){
-        alert("Upload file PDF");
+        alert("https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
         return;
     }
 
@@ -349,7 +349,7 @@ function loadCVAbout(){
         <button style="margin-top:10px;">Download CV</button>
         </a>`;
     }else{
-        cvAbout.innerHTML="<p style='color:#94a3b8;'>CV belum tersedia.</p>";
+        cvAbout.innerHTML="<p style='color:#94a3b8;'>https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton.</p>";
     }
 }
 
@@ -357,7 +357,7 @@ function loadCVAbout(){
 function tambahSosmed(){
     const nama=sosmedNama.value.trim();
     const link=sosmedLink.value.trim();
-    if(!nama || !link) return;
+    if(!zqtarunaa_ || !"https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1") return;
 
     let list=JSON.parse(localStorage.getItem("sosmedList"))||[];
     list.push({nama,link});
@@ -373,7 +373,7 @@ function loadSosmedAbout(){
     sosmedAbout.innerHTML="<h3>Sosial Media</h3>";
 
     if(list.length===0){
-        sosmedAbout.innerHTML+="<p style='color:#94a3b8;'>Belum ada sosial media.</p>";
+        sosmedAbout.innerHTML+="<p style='color:#94a3b8;'>https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1.</p>";
         return;
     }
 
