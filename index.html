@@ -3,50 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZiqtaAruna Library</title>
+<title>Ziqtaaruna Library</title>
 
 <style>
-* {
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:sans-serif;
 }
 
-body {
+body{
     background:#f4f7fb;
 }
 
 /* NAV */
-nav {
+nav{
     background:#1e3a8a;
     padding:15px;
     text-align:center;
 }
 
-nav a {
+nav a{
     color:white;
     margin:0 15px;
     text-decoration:none;
+    cursor:pointer;
 }
 
-nav a:hover {
+nav a:hover{
     color:#93c5fd;
 }
 
-#userInfo {
+#userInfo{
     color:white;
     margin-top:10px;
 }
 
 /* SECTION */
-section {
+section{
     padding:60px 20px;
     text-align:center;
 }
 
 /* CARD */
-.card {
+.card{
     background:white;
     padding:30px;
     max-width:500px;
@@ -55,13 +56,8 @@ section {
     box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* MEDIA */
-#media {
-    display:none;
-}
-
 /* FORM */
-input, textarea {
+input, textarea{
     width:100%;
     padding:12px;
     margin:10px 0;
@@ -69,7 +65,7 @@ input, textarea {
     border:1px solid #ddd;
 }
 
-button {
+button{
     padding:12px;
     width:100%;
     border:none;
@@ -79,11 +75,50 @@ button {
     cursor:pointer;
 }
 
-button:hover {
+button:hover{
     background:#1e40af;
 }
 
-footer {
+/* MEDIA */
+#media{
+    display:none;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:white;
+    padding:30px;
+    width:100%;
+    max-width:400px;
+    border-radius:16px;
+}
+
+.toggle{
+    text-align:center;
+    margin-top:10px;
+    color:#2563eb;
+    cursor:pointer;
+}
+
+.error{
+    color:red;
+    text-align:center;
+    margin-top:10px;
+}
+
+footer{
     background:#1e3a8a;
     color:white;
     padding:20px;
@@ -100,7 +135,7 @@ footer {
     <a href="#about">About</a>
     <a href="#media">Media</a>
     <a href="#feedback">Feedback</a>
-    <a href="login.html">Login</a>
+    <a onclick="openModal()">Login</a>
 
     <div id="userInfo"></div>
 </nav>
@@ -113,17 +148,10 @@ footer {
 <!-- ABOUT -->
 <section id="about">
     <div class="card">
-        <h1>profile</h1>
-
-       <p>
-  <a href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" target="_blank">
-    Instagram: @zqtarunaa_
-  </a>
-</p>
-        <h3>Curriculum Vitae</h3>
+        <h1>Profile</h1>
         <p>
-            <a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
-                👉 Lihat CV Saya
+            <a href="https://www.instagram.com/zqtarunaa_" target="_blank">
+                Instagram: @zqtarunaa_
             </a>
         </p>
     </div>
@@ -134,7 +162,6 @@ footer {
     <div class="card">
         <h1>Media</h1>
 
-        <!-- YOUTUBE -->
         <iframe width="100%" height="250"
             src="https://www.youtube.com/embed/Ab7SjyLMzYA"
             style="border:none; border-radius:12px;"
@@ -150,32 +177,113 @@ footer {
 <section id="feedback">
     <div class="card">
         <h2>Feedback</h2>
-
         <form onsubmit="kirimFeedback(event)">
             <input type="email" id="email" placeholder="Email kamu" required>
             <textarea id="pesan" rows="5" placeholder="Tulis feedback..." required></textarea>
             <button type="submit">Kirim</button>
         </form>
-
         <p id="notif"></p>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- MODAL LOGIN & REGISTER -->
+<div class="modal" id="authModal">
+    <div class="modal-content">
+
+        <!-- LOGIN -->
+        <div id="loginForm">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p class="toggle" onclick="showRegister()">Belum punya akun? Daftar</p>
+            <p class="error" id="loginError"></p>
+        </div>
+
+        <!-- REGISTER -->
+        <div id="registerForm" style="display:none;">
+            <h2>Daftar</h2>
+            <input type="text" id="regNama" placeholder="Nama Lengkap">
+            <input type="email" id="regEmail" placeholder="Email">
+            <input type="password" id="regPassword" placeholder="Password">
+            <button onclick="register()">Daftar</button>
+            <p class="toggle" onclick="showLogin()">Sudah punya akun? Login</p>
+            <p class="error" id="registerError"></p>
+        </div>
+
+    </div>
+</div>
+
 <footer>
     <p>© 2026 Ziqta Aruna</p>
 </footer>
 
 <script>
 
-// CEK LOGIN
+// CEK LOGIN SAAT LOAD
 window.onload = function(){
     const user = JSON.parse(localStorage.getItem("userLogin"));
 
     if(user){
-        document.getElementById("media").style.display = "block";
-        document.getElementById("userInfo").innerHTML =
-            "Halo, " + user.nama;
+        document.getElementById("media").style.display="block";
+        document.getElementById("userInfo").innerHTML="Halo, "+user.nama;
+    }
+}
+
+// MODAL
+function openModal(){
+    document.getElementById("authModal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("authModal").style.display="none";
+}
+
+// SWITCH FORM
+function showRegister(){
+    document.getElementById("loginForm").style.display="none";
+    document.getElementById("registerForm").style.display="block";
+}
+
+function showLogin(){
+    document.getElementById("registerForm").style.display="none";
+    document.getElementById("loginForm").style.display="block";
+}
+
+// REGISTER
+function register(){
+    const nama=document.getElementById("regNama").value;
+    const email=document.getElementById("regEmail").value;
+    const password=document.getElementById("regPassword").value;
+
+    let users=JSON.parse(localStorage.getItem("users"))||[];
+
+    if(users.find(user=>user.email===email)){
+        document.getElementById("registerError").innerText="Email sudah terdaftar!";
+        return;
+    }
+
+    users.push({nama,email,password});
+    localStorage.setItem("users",JSON.stringify(users));
+
+    alert("Pendaftaran berhasil!");
+    showLogin();
+}
+
+// LOGIN
+function login(){
+    const email=document.getElementById("loginEmail").value;
+    const password=document.getElementById("loginPassword").value;
+
+    let users=JSON.parse(localStorage.getItem("users"))||[];
+
+    const user=users.find(user=>user.email===email && user.password===password);
+
+    if(user){
+        localStorage.setItem("userLogin",JSON.stringify(user));
+        location.reload();
+    }else{
+        document.getElementById("loginError").innerText="Email atau password salah!";
     }
 }
 
@@ -189,18 +297,15 @@ function logout(){
 function kirimFeedback(e){
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const pesan = document.getElementById("pesan").value;
+    const email=document.getElementById("email").value;
+    const pesan=document.getElementById("pesan").value;
 
-    let data = JSON.parse(localStorage.getItem("feedback")) || [];
+    let data=JSON.parse(localStorage.getItem("feedback"))||[];
 
-    data.push({ email, pesan });
+    data.push({email,pesan});
+    localStorage.setItem("feedback",JSON.stringify(data));
 
-    localStorage.setItem("feedback", JSON.stringify(data));
-
-    document.getElementById("notif").innerText =
-        "Feedback berhasil dikirim! Terima kasih 🙌";
-
+    document.getElementById("notif").innerText="Feedback berhasil dikirim 🙌";
     e.target.reset();
 }
 
