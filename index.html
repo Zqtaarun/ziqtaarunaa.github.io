@@ -193,24 +193,15 @@ footer{
 <input type="password" id="loginPassword" placeholder="Password">
 <button onclick="login()">Login</button>
 <p class="error" id="loginError"></p>
+    
 <p>Belum punya akun?
-<span style="color:#0ea5e9;cursor:pointer;" onclick="showRegister()">Daftar</span>
+<span style="color:#0ea5e9;cursor:pointer;" onclick="openRegisterTab()">Daftar</span>
 </p>
 </div>
-
-<div id="registerForm" style="display:none;">
-<h2>Register</h2>
-<input type="text" id="regNama" placeholder="Nama Lengkap">
-<input type="email" id="regEmail" placeholder="Email">
-<input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
-<button onclick="register()">Daftar</button>
-<p class="error" id="registerError"></p>
-<p>Sudah punya akun?
-<span style="color:#0ea5e9;cursor:pointer;" onclick="showLogin()">Login</span>
+    
 </p>
 </div>
-
-</div>
+    
 </div>
 
 <footer>
@@ -218,6 +209,91 @@ footer{
 </footer>
 
 <script>
+    function openRegisterTab(){
+
+let newTab = window.open("", "_blank");
+
+newTab.document.write(`
+<html>
+<head>
+<title>Register</title>
+<style>
+body{
+font-family:Poppins, sans-serif;
+background:linear-gradient(135deg,#e0f2fe,#fdf4ff);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+.box{
+background:white;
+padding:40px;
+width:350px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+}
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #cbd5e1;
+border-radius:10px;
+}
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#38bdf8,#a78bfa);
+color:white;
+cursor:pointer;
+}
+.error{color:#ef4444;font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Register</h2>
+
+<input type="text" id="regNama" placeholder="Nama Lengkap">
+<input type="email" id="regEmail" placeholder="Email">
+<input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
+<button onclick="register()">Daftar</button>
+<p class="error" id="registerError"></p>
+</div>
+
+<script>
+function register(){
+const nama=document.getElementById("regNama").value.trim();
+const email=document.getElementById("regEmail").value.trim();
+const password=document.getElementById("regPassword").value.trim();
+
+if(password.length<6){
+document.getElementById("registerError").innerText="Password minimal 6 karakter!";
+return;
+}
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+if(users.find(u=>u.email===email)){
+document.getElementById("registerError").innerText="Email sudah terdaftar!";
+return;
+}
+
+users.push({nama,email,password});
+localStorage.setItem("users",JSON.stringify(users));
+
+alert("Registrasi berhasil! Silakan login.");
+window.close();
+}
+<\/script>
+
+</body>
+</html>
+`);
+}
 /* PARTICLE BACKGROUND */
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
@@ -324,6 +400,7 @@ localStorage.setItem("feedbacks",JSON.stringify(feedbacks));
 notif.innerHTML="<span class='success'>Feedback berhasil dikirim ✨</span>";
 e.target.reset();
 }
+    
 </script>
 
 </body>
