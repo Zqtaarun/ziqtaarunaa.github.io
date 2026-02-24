@@ -15,6 +15,10 @@
     font-family:'Poppins',sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:linear-gradient(135deg,#0f172a,#1e293b);
     color:white;
@@ -27,6 +31,7 @@ nav{
     text-align:center;
     position:sticky;
     top:0;
+    z-index:1000;
 }
 
 nav a{
@@ -51,7 +56,7 @@ section{
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(20px);
     padding:40px;
-    max-width:600px;
+    max-width:700px;
     margin:auto;
     border-radius:20px;
     border:1px solid rgba(255,255,255,0.1);
@@ -80,6 +85,26 @@ section{
     color:white;
 }
 
+iframe{
+    width:100%;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+}
+
+textarea{
+    resize:none;
+}
+
 button{
     padding:12px;
     width:100%;
@@ -89,18 +114,20 @@ button{
     color:white;
     cursor:pointer;
     margin-top:10px;
+    transition:.3s;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:10px;
+button:hover{
+    transform:scale(1.05);
 }
 
 .error{
     color:#f87171;
+    font-size:14px;
+}
+
+.success{
+    color:#4ade80;
     font-size:14px;
 }
 
@@ -134,6 +161,7 @@ footer{
     <a href="#home">Beranda</a>
     <a href="#about">About Me</a>
     <a href="#media">Media</a>
+    <a href="#feedback">Feedback</a>
     <a onclick="openModal()">Login</a>
 </nav>
 
@@ -149,11 +177,11 @@ footer{
         <p>Halo 👋 Saya Ziqta Aruna Syahidah.</p>
 
         <a class="link-btn"
-        href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1"
+        href="https://www.instagram.com/zqtarunaa_"
         target="_blank">Instagram</a>
 
         <a class="link-btn"
-        href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+        href="https://www.canva.com/design/DAHBldfUCrE/"
         target="_blank">Lihat CV</a>
     </div>
 </section>
@@ -162,15 +190,32 @@ footer{
 <section id="media">
     <div class="card">
         <h2>Media</h2>
-        <p>Kunjungi YouTube saya:</p>
 
-        <a class="link-btn"
-        href="https://www.youtube.com/"
-        target="_blank">YouTube Channel</a>
+        <iframe height="315"
+        src="https://www.youtube.com/embed/phRZKH1tQsQ?si=_I8tcmfsz3kQLNib"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+
     </div>
 </section>
 
-<!-- MODAL LOGIN -->
+<!-- FEEDBACK -->
+<section id="feedback">
+    <div class="card">
+        <h2>Feedback</h2>
+        <form onsubmit="kirimFeedback(event)">
+            <input type="email" id="email" placeholder="Masukkan Email" required>
+            <textarea rows="4" id="pesan" placeholder="Tulis feedback kamu..." required></textarea>
+            <button type="submit">Kirim Feedback</button>
+        </form>
+        <p id="notif"></p>
+    </div>
+</section>
+
+<!-- LOGIN MODAL -->
 <div class="modal" id="authModal">
 <div class="modal-content">
 
@@ -257,7 +302,7 @@ function login(){
     const user=users.find(u=>u.email===email);
 
     if(!user){
-        loginError.innerText="Akun tidak ditemukan. Silakan daftar.";
+        loginError.innerText="Akun tidak ditemukan.";
         return;
     }
 
@@ -268,6 +313,12 @@ function login(){
 
     alert("Login berhasil!");
     authModal.style.display="none";
+}
+
+function kirimFeedback(e){
+    e.preventDefault();
+    notif.innerHTML="<span class='success'>Terima kasih atas feedbacknya 🙌</span>";
+    e.target.reset();
 }
 </script>
 
