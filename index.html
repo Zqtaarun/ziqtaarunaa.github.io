@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ziqta Aruna Library</title>
+<title>Ziqtaaruna Library</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -20,12 +20,23 @@ html{
 }
 
 body{
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-    color:white;
+    background:linear-gradient(135deg,#e0f2fe,#f0f9ff,#fdf4ff);
+    color:#1e293b;
+    overflow-x:hidden;
+}
+
+/* PARTICLE CANVAS */
+#particles{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
 
 nav{
-    background:rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.7);
     backdrop-filter:blur(15px);
     padding:20px;
     text-align:center;
@@ -35,16 +46,15 @@ nav{
 }
 
 nav a{
-    color:#cbd5e1;
+    color:#334155;
     margin:0 20px;
     text-decoration:none;
+    font-weight:500;
     transition:.3s;
-    cursor:pointer;
 }
 
 nav a:hover{
-    color:#38bdf8;
-    text-shadow:0 0 10px #38bdf8;
+    color:#0ea5e9;
 }
 
 section{
@@ -53,20 +63,17 @@ section{
 }
 
 .card{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(20px);
+    background:white;
     padding:40px;
     max-width:700px;
     margin:auto;
     border-radius:20px;
-    border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 0 40px rgba(56,189,248,0.2);
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
     transition:.3s;
 }
 
 .card:hover{
     transform:translateY(-5px);
-    box-shadow:0 0 60px rgba(56,189,248,0.5);
 }
 
 .link-btn{
@@ -74,14 +81,14 @@ section{
     margin:10px;
     padding:10px 18px;
     border-radius:12px;
-    background:rgba(56,189,248,0.2);
+    background:#e0f2fe;
     text-decoration:none;
-    color:#38bdf8;
+    color:#0284c7;
     transition:.3s;
 }
 
 .link-btn:hover{
-    background:#38bdf8;
+    background:#0ea5e9;
     color:white;
 }
 
@@ -95,14 +102,8 @@ input, textarea{
     width:100%;
     padding:12px;
     margin:10px 0;
-    border:none;
+    border:1px solid #cbd5e1;
     border-radius:10px;
-    background:rgba(255,255,255,0.08);
-    color:white;
-}
-
-textarea{
-    resize:none;
 }
 
 button{
@@ -110,7 +111,7 @@ button{
     width:100%;
     border:none;
     border-radius:10px;
-    background:linear-gradient(90deg,#38bdf8,#6366f1);
+    background:linear-gradient(90deg,#38bdf8,#a78bfa);
     color:white;
     cursor:pointer;
     margin-top:10px;
@@ -118,16 +119,16 @@ button{
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.03);
 }
 
 .error{
-    color:#f87171;
+    color:#ef4444;
     font-size:14px;
 }
 
 .success{
-    color:#4ade80;
+    color:#16a34a;
     font-size:14px;
 }
 
@@ -135,14 +136,13 @@ button:hover{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(8px);
+    background:rgba(0,0,0,0.4);
     justify-content:center;
     align-items:center;
 }
 
 .modal-content{
-    background:#1e293b;
+    background:white;
     padding:40px;
     width:350px;
     border-radius:20px;
@@ -151,11 +151,13 @@ button:hover{
 footer{
     text-align:center;
     padding:30px;
-    background:rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.6);
 }
 </style>
 </head>
 <body>
+
+<canvas id="particles"></canvas>
 
 <nav>
     <a href="#home">Beranda</a>
@@ -165,44 +167,31 @@ footer{
     <a onclick="openModal()">Login</a>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-    <h1>Welcome to My Library 🚀</h1>
+    <h1>Welcome to My Library ✨</h1>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
     <div class="card">
         <h2>About Me</h2>
         <p>Halo 👋 Saya Ziqta Aruna Syahidah.</p>
 
-        <a class="link-btn"
-        href="https://www.instagram.com/zqtarunaa_"
-        target="_blank">Instagram</a>
-
-        <a class="link-btn"
-        href="https://www.canva.com/design/DAHBldfUCrE/"
-        target="_blank">Lihat CV</a>
+        <a class="link-btn" href="https://www.instagram.com/zqtarunaa_" target="_blank">Instagram</a>
+        <a class="link-btn" href="https://www.canva.com/design/DAHBldfUCrE/" target="_blank">Lihat CV</a>
     </div>
 </section>
 
-<!-- MEDIA -->
 <section id="media">
     <div class="card">
         <h2>Media</h2>
 
         <iframe height="315"
         src="https://www.youtube.com/embed/phRZKH1tQsQ?si=_I8tcmfsz3kQLNib"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
 
     </div>
 </section>
 
-<!-- FEEDBACK -->
 <section id="feedback">
     <div class="card">
         <h2>Feedback</h2>
@@ -215,7 +204,6 @@ footer{
     </div>
 </section>
 
-<!-- LOGIN MODAL -->
 <div class="modal" id="authModal">
 <div class="modal-content">
 
@@ -225,9 +213,7 @@ footer{
 <input type="password" id="loginPassword" placeholder="Password">
 <button onclick="login()">Login</button>
 <p class="error" id="loginError"></p>
-<p style="margin-top:10px;font-size:14px;">
-Belum punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showRegister()">Daftar</span>
-</p>
+<p>Belum punya akun? <span style="color:#0ea5e9;cursor:pointer;" onclick="showRegister()">Daftar</span></p>
 </div>
 
 <div id="registerForm" style="display:none;">
@@ -237,9 +223,7 @@ Belum punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showRegis
 <input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
 <button onclick="register()">Daftar</button>
 <p class="error" id="registerError"></p>
-<p style="margin-top:10px;font-size:14px;">
-Sudah punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showLogin()">Login</span>
-</p>
+<p>Sudah punya akun? <span style="color:#0ea5e9;cursor:pointer;" onclick="showLogin()">Login</span></p>
 </div>
 
 </div>
@@ -250,6 +234,41 @@ Sudah punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showLogin
 </footer>
 
 <script>
+/* PARTICLE BACKGROUND */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<60;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*3+1,
+        dx:(Math.random()-0.5)*1,
+        dy:(Math.random()-0.5)*1
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle="rgba(14,165,233,0.3)";
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+
+        if(p.x<0||p.x>canvas.width) p.dx*=-1;
+        if(p.y<0||p.y>canvas.height) p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+/* AUTH SYSTEM */
 function openModal(){
     authModal.style.display="flex";
 }
@@ -290,7 +309,7 @@ function register(){
     users.push({nama,email,password});
     localStorage.setItem("users",JSON.stringify(users));
 
-    alert("Registrasi berhasil! Silakan login.");
+    alert("Registrasi berhasil!");
     showLogin();
 }
 
@@ -299,15 +318,10 @@ function login(){
     const password=loginPassword.value.trim();
     let users=JSON.parse(localStorage.getItem("users"))||[];
 
-    const user=users.find(u=>u.email===email);
+    const user=users.find(u=>u.email===email && u.password===password);
 
     if(!user){
-        loginError.innerText="Akun tidak ditemukan.";
-        return;
-    }
-
-    if(user.password!==password){
-        loginError.innerText="Password salah!";
+        loginError.innerText="Email atau password salah!";
         return;
     }
 
@@ -315,10 +329,21 @@ function login(){
     authModal.style.display="none";
 }
 
+/* FEEDBACK STORAGE */
 function kirimFeedback(e){
     e.preventDefault();
-    notif.innerHTML="<span class='success'>Terima kasih atas feedbacknya 🙌</span>";
+
+    const email=document.getElementById("email").value;
+    const pesan=document.getElementById("pesan").value;
+
+    let feedbacks=JSON.parse(localStorage.getItem("feedbacks"))||[];
+    feedbacks.push({email,pesan,tanggal:new Date().toLocaleString()});
+    localStorage.setItem("feedbacks",JSON.stringify(feedbacks));
+
+    notif.innerHTML="<span class='success'>Feedback berhasil dikirim ✨</span>";
     e.target.reset();
+
+    console.log("Daftar Feedback:",feedbacks);
 }
 </script>
 
