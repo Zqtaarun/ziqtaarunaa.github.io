@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ziqtaaruna Library</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -24,7 +24,7 @@ body{
 /* NAV */
 nav{
     background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(15px);
     padding:20px;
     text-align:center;
     border-bottom:1px solid rgba(255,255,255,0.1);
@@ -32,20 +32,19 @@ nav{
 
 nav a{
     color:#cbd5e1;
-    margin:0 18px;
+    margin:0 15px;
     text-decoration:none;
-    font-weight:500;
-    transition:0.3s;
+    cursor:pointer;
+    transition:.3s;
 }
 
 nav a:hover{
     color:#38bdf8;
-    text-shadow:0 0 10px #38bdf8;
+    text-shadow:0 0 12px #38bdf8;
 }
 
 #userInfo{
     margin-top:10px;
-    font-size:14px;
     color:#38bdf8;
 }
 
@@ -53,28 +52,32 @@ nav a:hover{
 section{
     padding:80px 20px;
     text-align:center;
+    display:none;
 }
 
-/* CARD GLASS */
+#home,#about,#cv,#feedback{
+    display:block;
+}
+
+/* CARD */
 .card{
     background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(20px);
     padding:40px;
     max-width:600px;
     margin:auto;
     border-radius:20px;
     border:1px solid rgba(255,255,255,0.1);
     box-shadow:0 0 40px rgba(56,189,248,0.15);
-    transition:0.4s;
+    transition:.4s;
 }
 
 .card:hover{
     transform:translateY(-5px);
-    box-shadow:0 0 60px rgba(56,189,248,0.4);
+    box-shadow:0 0 60px rgba(56,189,248,0.5);
 }
 
-/* INPUT */
-input, textarea{
+input,textarea{
     width:100%;
     padding:14px;
     margin:12px 0;
@@ -85,12 +88,6 @@ input, textarea{
     outline:none;
 }
 
-input::placeholder,
-textarea::placeholder{
-    color:#94a3b8;
-}
-
-/* BUTTON */
 button{
     padding:14px;
     width:100%;
@@ -100,7 +97,7 @@ button{
     color:white;
     font-weight:600;
     cursor:pointer;
-    transition:0.3s;
+    transition:.3s;
 }
 
 button:hover{
@@ -108,265 +105,177 @@ button:hover{
     box-shadow:0 0 20px #38bdf8;
 }
 
-/* MEDIA */
-#media{
+/* MODAL */
+.modal{
     display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(8px);
+    justify-content:center;
+    align-items:center;
+    animation:fade .3s ease;
 }
 
-/* YOUTUBE CONTAINER */
-.video-wrapper{
-    margin-top:20px;
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-/* FOOTER */
+.modal-content{
+    background:rgba(30,41,59,.95);
+    padding:40px;
+    width:350px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 40px rgba(56,189,248,.4);
+}
+
+.error{
+    color:#f87171;
+    font-size:14px;
+}
+
 footer{
     background:rgba(255,255,255,0.05);
     padding:25px;
     text-align:center;
-    font-size:14px;
-    border-top:1px solid rgba(255,255,255,0.1);
 }
 </style>
-</style>
 </head>
-
 <body>
 
-<!-- NAV -->
 <nav>
-    <a href="#home">Beranda</a>
-    <a href="#about">About</a>
-    <a href="#media">Media</a>
-    <a href="#feedback">Feedback</a>
     <a onclick="openModal()">Login</a>
-
     <div id="userInfo"></div>
 </nav>
 
-<!-- HOME -->
 <section id="home">
     <h1>Welcome to My Library 📚</h1>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-    <div class="card">
-        <h1>Profile</h1>
-        <p>
-            <a href="https://www.instagram.com/zqtarunaa_" target="_blank">
-                Instagram: @zqtarunaa_
-            </a>
-        </p>
-    </div>
-</section>
-    <!-- CV SECTION -->
-<section id="cv">
-    <div class="card">
-        <h1>Curriculum Vitae</h1>
-
-        <br>
-
-        <a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-           target="_blank">
-            <button>Lihat CV</button>
-        </a>
-    </div>
-</section>
-
-<!-- MEDIA (LOGIN ONLY) -->
 <section id="media">
     <div class="card">
         <h1>Media</h1>
-
-        <iframe width="100%" height="250"
-            src="https://www.youtube.com/embed/Ab7SjyLMzYA"
-            style="border:none; border-radius:12px;"
-            allowfullscreen>
-        </iframe>
-
+        <div id="videoContainer"></div>
+        <br>
+        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
+        <button onclick="tambahVideo()">Tambah Video</button>
         <br><br>
         <button onclick="logout()">Logout</button>
     </div>
 </section>
-    <!-- UPLOAD YOUTUBE -->
-<section id="uploadVideo" style="display:none;">
-    <div class="card">
-        <h1>Upload YouTube Video</h1>
 
-        <p>Masukkan link YouTube kamu 👇</p>
-
-        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
-
-        <button onclick="tambahVideo()">Tampilkan Video</button>
-
-        <div class="video-wrapper" id="videoContainer"></div>
-    </div>
-</section>
-
-<!-- FEEDBACK -->
 <section id="feedback">
     <div class="card">
         <h2>Feedback</h2>
         <form onsubmit="kirimFeedback(event)">
-            <input type="email" id="email" placeholder="Email kamu" required>
-            <textarea id="pesan" rows="5" placeholder="Tulis feedback..." required></textarea>
+            <input type="email" id="email" placeholder="Email" required>
+            <textarea id="pesan" rows="4" placeholder="Pesan" required></textarea>
             <button type="submit">Kirim</button>
         </form>
         <p id="notif"></p>
     </div>
 </section>
 
-<!-- MODAL LOGIN & REGISTER -->
 <div class="modal" id="authModal">
-    <div class="modal-content">
+<div class="modal-content">
 
-        <!-- LOGIN -->
-        <div id="loginForm">
-            <h2>Login</h2>
-            <input type="email" id="loginEmail" placeholder="Email">
-            <input type="password" id="loginPassword" placeholder="Password">
-            <button onclick="login()">Login</button>
-            <p class="toggle" onclick="showRegister()">Belum punya akun? Daftar</p>
-            <p class="error" id="loginError"></p>
-        </div>
+<div id="loginForm">
+<h2>Login</h2>
+<input type="email" id="loginEmail" placeholder="Email">
+<input type="password" id="loginPassword" placeholder="Password">
+<button onclick="login()">Login</button>
+<p class="error" id="loginError"></p>
+</div>
 
-        <!-- REGISTER -->
-        <div id="registerForm" style="display:none;">
-            <h2>Daftar</h2>
-            <input type="text" id="regNama" placeholder="Nama Lengkap">
-            <input type="email" id="regEmail" placeholder="Email">
-            <input type="password" id="regPassword" placeholder="Password">
-            <button onclick="register()">Daftar</button>
-            <p class="toggle" onclick="showLogin()">Sudah punya akun? Login</p>
-            <p class="error" id="registerError"></p>
-        </div>
+<div id="registerForm" style="display:none;">
+<h2>Daftar</h2>
+<input type="text" id="regNama" placeholder="Nama Lengkap">
+<input type="email" id="regEmail" placeholder="Email">
+<input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
+<button onclick="register()">Daftar</button>
+<p class="error" id="registerError"></p>
+</div>
 
-    </div>
+</div>
 </div>
 
 <footer>
-    <p>© 2026 Ziqta Aruna</p>
+© 2026 Ziqta Aruna
 </footer>
 
 <script>
-
-    <!-- UPLOAD YOUTUBE (LOGIN ONLY) -->
-<section id="uploadVideo" style="display:none;">
-    <div class="card">
-        <h1>Upload YouTube Video</h1>
-
-        <p>Masukkan link YouTube kamu 👇</p>
-
-        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
-
-        <button onclick="tambahVideo()">Tampilkan Video</button>
-
-        <div class="video-wrapper" id="videoContainer"></div>
-    </div>
-</section>
-<script>
-        // FEEDBACK
-function kirimFeedback(e){
-    e.preventDefault();
-
-    const email=document.getElementById("email").value;
-    const pesan=document.getElementById("pesan").value;
-
-    let data=JSON.parse(localStorage.getItem("feedback"))||[];
-
-    data.push({email,pesan});
-    localStorage.setItem("feedback",JSON.stringify(data));
-
-    document.getElementById("notif").innerText="Feedback berhasil dikirim 🙌";
-    e.target.reset();
+// MODAL
+function openModal(){
+    document.getElementById("authModal").style.display="flex";
+}
+function closeModal(){
+    document.getElementById("authModal").style.display="none";
 }
 
-// CEK LOGIN SAAT LOAD
-window.onload = function(){
-    const user = JSON.parse(localStorage.getItem("userLogin"));
-
+// CEK LOGIN
+window.onload=function(){
+    const user=JSON.parse(localStorage.getItem("userLogin"));
     if(user){
         document.getElementById("media").style.display="block";
-        document.getElementById("uploadVideo").style.display="block";
         document.getElementById("userInfo").innerHTML="Halo, "+user.nama;
     }
 }
 
-// TOGGLE FORM
-function showRegister(){
-    document.getElementById("loginForm").style.display="none";
-    document.getElementById("registerForm").style.display="block";
-}
-
-function showLogin(){
-    document.getElementById("registerForm").style.display="none";
-    document.getElementById("loginForm").style.display="block";
-}
-
-// REGISTER (WAJIB SEBELUM LOGIN)
+// REGISTER
 function register(){
+    const nama=regNama.value.trim();
+    const email=regEmail.value.trim();
+    const password=regPassword.value.trim();
 
-    const nama = document.getElementById("regNama").value.trim();
-    const email = document.getElementById("regEmail").value.trim();
-    const password = document.getElementById("regPassword").value.trim();
-
-    if(!nama || !email || !password){
-        document.getElementById("registerError").innerText="Semua field wajib diisi!";
+    if(password.length<6){
+        registerError.innerText="Password minimal 6 karakter!";
         return;
     }
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users=JSON.parse(localStorage.getItem("users"))||[];
 
-    if(users.find(user => user.email === email)){
-        document.getElementById("registerError").innerText="Email sudah terdaftar!";
-        return;
-    }
+    users.push({nama,email,password});
+    localStorage.setItem("users",JSON.stringify(users));
 
-    users.push({ nama, email, password });
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Pendaftaran berhasil! Silakan login.");
+    alert("Berhasil daftar! Silakan login.");
     showLogin();
 }
 
-// LOGIN (HARUS SUDAH TERDAFTAR)
+// LOGIN
 function login(){
+    const email=loginEmail.value.trim();
+    const password=loginPassword.value.trim();
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
+    let users=JSON.parse(localStorage.getItem("users"))||[];
 
-    let users = JSON.parse(localStorage.getItem("users"));
+    const user=users.find(u=>u.email===email);
 
-    // Kalau belum ada user sama sekali
-    if(!users || users.length === 0){
-        document.getElementById("loginError").innerText=
-            "Belum ada akun terdaftar. Silakan daftar dulu!";
-        return;
-    }
-
-    const user = users.find(
-        user => user.email === email
-    );
-
-    // Kalau email tidak ditemukan
     if(!user){
-        document.getElementById("loginError").innerText=
-            "Akun tidak ditemukan! Silakan daftar dulu.";
+        loginError.innerText="Akun tidak ditemukan. Silakan daftar.";
+        showRegister();
         return;
     }
 
-    // Kalau password salah
-    if(user.password !== password){
-        document.getElementById("loginError").innerText=
-            "Password salah!";
+    if(user.password!==password){
+        loginError.innerText="Password salah!";
         return;
     }
 
-    // Kalau semua benar
-    localStorage.setItem("userLogin", JSON.stringify(user));
+    localStorage.setItem("userLogin",JSON.stringify(user));
     location.reload();
 }
 
+// TOGGLE
+function showRegister(){
+    loginForm.style.display="none";
+    registerForm.style.display="block";
+}
+function showLogin(){
+    registerForm.style.display="none";
+    loginForm.style.display="block";
+}
 
 // LOGOUT
 function logout(){
@@ -374,7 +283,32 @@ function logout(){
     location.reload();
 }
 
+// YOUTUBE
+function tambahVideo(){
+    const link=youtubeLink.value;
+    const id=extractVideoID(link);
+    if(!id) return;
+
+    videoContainer.innerHTML=
+    `<iframe width="100%" height="250"
+    src="https://www.youtube.com/embed/${id}"
+    style="border:none;border-radius:12px;"
+    allowfullscreen></iframe>`;
+}
+
+function extractVideoID(url){
+    const reg=/((youtu.be\/)|(v=))([^&]+)/;
+    const match=url.match(reg);
+    return match?match[4]:null;
+}
+
+// FEEDBACK
+function kirimFeedback(e){
+    e.preventDefault();
+    notif.innerText="Terima kasih atas feedbacknya 🙌";
+    e.target.reset();
+}
 </script>
-  
+
 </body>
 </html>
