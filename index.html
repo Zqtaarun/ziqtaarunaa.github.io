@@ -257,34 +257,31 @@ footer{
 
         <p>Masukkan link YouTube kamu 👇</p>
 
-        <input type="text" id="youtubeLink" placeholder="https://www.youtube.com/watch?v=xxxx">
+        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
 
         <button onclick="tambahVideo()">Tampilkan Video</button>
 
         <div class="video-wrapper" id="videoContainer"></div>
     </div>
 </section>
+<script>
 
+// =========================
 // CEK LOGIN SAAT LOAD
+// =========================
 window.onload = function(){
     const user = JSON.parse(localStorage.getItem("userLogin"));
 
     if(user){
         document.getElementById("media").style.display="block";
+        document.getElementById("uploadVideo").style.display="block";
         document.getElementById("userInfo").innerHTML="Halo, "+user.nama;
     }
 }
 
-// MODAL
-function openModal(){
-    document.getElementById("authModal").style.display="flex";
-}
-
-function closeModal(){
-    document.getElementById("authModal").style.display="none";
-}
-
-// SWITCH FORM
+// =========================
+// TOGGLE FORM
+// =========================
 function showRegister(){
     document.getElementById("loginForm").style.display="none";
     document.getElementById("registerForm").style.display="block";
@@ -295,48 +292,91 @@ function showLogin(){
     document.getElementById("loginForm").style.display="block";
 }
 
-// REGISTER
+// =========================
+// REGISTER (WAJIB SEBELUM LOGIN)
+// =========================
 function register(){
-    const nama=document.getElementById("regNama").value;
-    const email=document.getElementById("regEmail").value;
-    const password=document.getElementById("regPassword").value;
 
-    let users=JSON.parse(localStorage.getItem("users"))||[];
+    const nama = document.getElementById("regNama").value.trim();
+    const email = document.getElementById("regEmail").value.trim();
+    const password = document.getElementById("regPassword").value.trim();
 
-    if(users.find(user=>user.email===email)){
+    if(!nama || !email || !password){
+        document.getElementById("registerError").innerText="Semua field wajib diisi!";
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Cek apakah email sudah pernah daftar
+    if(users.find(user => user.email === email)){
         document.getElementById("registerError").innerText="Email sudah terdaftar!";
         return;
     }
 
-    users.push({nama,email,password});
-    localStorage.setItem("users",JSON.stringify(users));
+    // Simpan user baru
+    users.push({ nama, email, password });
+    localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Pendaftaran berhasil!");
+    alert("Pendaftaran berhasil! Silakan login.");
     showLogin();
 }
 
-// LOGIN
+// =========================
+// LOGIN (HARUS SUDAH TERDAFTAR)
+// =========================
 function login(){
-    const email=document.getElementById("loginEmail").value;
-    const password=document.getElementById("loginPassword").value;
 
-    let users=JSON.parse(localStorage.getItem("users"))||[];
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
 
-    const user=users.find(user=>user.email===email && user.password===password);
+    let users = JSON.parse(localStorage.getItem("users"));
 
-    if(user){
-        localStorage.setItem("userLogin",JSON.stringify(user));
-        location.reload();
-    }else{
-        document.getElementById("loginError").innerText="Email atau password salah!";
+    // Kalau belum ada user sama sekali
+    if(!users || users.length === 0){
+        document.getElementById("loginError").innerText=
+            "Belum ada akun terdaftar. Silakan daftar dulu!";
+        return;
     }
+
+    const user = users.find(
+        user => user.email === email
+    );
+
+    // Kalau email tidak ditemukan
+    if(!user){
+        document.getElementById("loginError").innerText=
+            "Akun tidak ditemukan! Silakan daftar dulu.";
+        return;
+    }
+
+    // Kalau password salah
+    if(user.password !== password){
+        document.getElementById("loginError").innerText=
+            "Password salah!";
+        return;
+    }
+
+    // Kalau semua benar
+    localStorage.setItem("userLogin", JSON.stringify(user));
+    location.reload();
 }
 
+// =========================
 // LOGOUT
+// =========================
 function logout(){
     localStorage.removeItem("userLogin");
     location.reload();
 }
+
+</script>
+
+
+
+    
+    
+
 
 // FEEDBACK
 function kirimFeedback(e){
