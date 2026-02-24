@@ -6,77 +6,106 @@
 <title>Ziqtaaruna Library</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:sans-serif;
+    font-family:'Poppins', sans-serif;
 }
 
 body{
-    background:#f4f7fb;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    overflow-x:hidden;
 }
 
 /* NAV */
 nav{
-    background:#1e3a8a;
-    padding:15px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    padding:20px;
     text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 nav a{
-    color:white;
-    margin:0 15px;
+    color:#cbd5e1;
+    margin:0 18px;
     text-decoration:none;
-    cursor:pointer;
+    font-weight:500;
+    transition:0.3s;
 }
 
 nav a:hover{
-    color:#93c5fd;
+    color:#38bdf8;
+    text-shadow:0 0 10px #38bdf8;
 }
 
 #userInfo{
-    color:white;
     margin-top:10px;
+    font-size:14px;
+    color:#38bdf8;
 }
 
 /* SECTION */
 section{
-    padding:60px 20px;
+    padding:80px 20px;
     text-align:center;
 }
 
-/* CARD */
+/* CARD GLASS */
 .card{
-    background:white;
-    padding:30px;
-    max-width:500px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    max-width:600px;
     margin:auto;
-    border-radius:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 40px rgba(56,189,248,0.15);
+    transition:0.4s;
 }
 
-/* FORM */
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 60px rgba(56,189,248,0.4);
+}
+
+/* INPUT */
 input, textarea{
     width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:8px;
-    border:1px solid #ddd;
+    padding:14px;
+    margin:12px 0;
+    border-radius:12px;
+    border:none;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    outline:none;
 }
 
+input::placeholder,
+textarea::placeholder{
+    color:#94a3b8;
+}
+
+/* BUTTON */
 button{
-    padding:12px;
+    padding:14px;
     width:100%;
     border:none;
-    border-radius:8px;
-    background:#2563eb;
+    border-radius:12px;
+    background:linear-gradient(90deg,#38bdf8,#6366f1);
     color:white;
+    font-weight:600;
     cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#1e40af;
+    transform:scale(1.05);
+    box-shadow:0 0 20px #38bdf8;
 }
 
 /* MEDIA */
@@ -84,46 +113,20 @@ button:hover{
     display:none;
 }
 
-/* MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-    justify-content:center;
-    align-items:center;
+/* YOUTUBE CONTAINER */
+.video-wrapper{
+    margin-top:20px;
 }
 
-.modal-content{
-    background:white;
-    padding:30px;
-    width:100%;
-    max-width:400px;
-    border-radius:16px;
-}
-
-.toggle{
-    text-align:center;
-    margin-top:10px;
-    color:#2563eb;
-    cursor:pointer;
-}
-
-.error{
-    color:red;
-    text-align:center;
-    margin-top:10px;
-}
-
+/* FOOTER */
 footer{
-    background:#1e3a8a;
-    color:white;
-    padding:20px;
+    background:rgba(255,255,255,0.05);
+    padding:25px;
     text-align:center;
+    font-size:14px;
+    border-top:1px solid rgba(255,255,255,0.1);
 }
+</style>
 </style>
 </head>
 
@@ -161,7 +164,6 @@ footer{
     <div class="card">
         <h1>Curriculum Vitae</h1>
 
-        <p><strong>Nama:</strong> Ziqta Aruna</p>
         <br>
 
         <a href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
@@ -184,6 +186,20 @@ footer{
 
         <br><br>
         <button onclick="logout()">Logout</button>
+    </div>
+</section>
+    <!-- UPLOAD YOUTUBE -->
+<section id="uploadVideo" style="display:none;">
+    <div class="card">
+        <h1>Upload YouTube Video</h1>
+
+        <p>Masukkan link YouTube kamu 👇</p>
+
+        <input type="text" id="youtubeLink" placeholder="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>">
+
+        <button onclick="tambahVideo()">Tampilkan Video</button>
+
+        <div class="video-wrapper" id="videoContainer"></div>
     </div>
 </section>
 
