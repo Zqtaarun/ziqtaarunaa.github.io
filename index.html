@@ -265,10 +265,23 @@ footer{
     </div>
 </section>
 <script>
+        // FEEDBACK
+function kirimFeedback(e){
+    e.preventDefault();
 
-// =========================
+    const email=document.getElementById("email").value;
+    const pesan=document.getElementById("pesan").value;
+
+    let data=JSON.parse(localStorage.getItem("feedback"))||[];
+
+    data.push({email,pesan});
+    localStorage.setItem("feedback",JSON.stringify(data));
+
+    document.getElementById("notif").innerText="Feedback berhasil dikirim 🙌";
+    e.target.reset();
+}
+
 // CEK LOGIN SAAT LOAD
-// =========================
 window.onload = function(){
     const user = JSON.parse(localStorage.getItem("userLogin"));
 
@@ -279,9 +292,7 @@ window.onload = function(){
     }
 }
 
-// =========================
 // TOGGLE FORM
-// =========================
 function showRegister(){
     document.getElementById("loginForm").style.display="none";
     document.getElementById("registerForm").style.display="block";
@@ -292,9 +303,7 @@ function showLogin(){
     document.getElementById("loginForm").style.display="block";
 }
 
-// =========================
 // REGISTER (WAJIB SEBELUM LOGIN)
-// =========================
 function register(){
 
     const nama = document.getElementById("regNama").value.trim();
@@ -308,13 +317,11 @@ function register(){
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Cek apakah email sudah pernah daftar
     if(users.find(user => user.email === email)){
         document.getElementById("registerError").innerText="Email sudah terdaftar!";
         return;
     }
 
-    // Simpan user baru
     users.push({ nama, email, password });
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -322,9 +329,7 @@ function register(){
     showLogin();
 }
 
-// =========================
 // LOGIN (HARUS SUDAH TERDAFTAR)
-// =========================
 function login(){
 
     const email = document.getElementById("loginEmail").value.trim();
@@ -362,36 +367,11 @@ function login(){
     location.reload();
 }
 
-// =========================
+
 // LOGOUT
-// =========================
 function logout(){
     localStorage.removeItem("userLogin");
     location.reload();
-}
-
-</script>
-
-
-
-    
-    
-
-
-// FEEDBACK
-function kirimFeedback(e){
-    e.preventDefault();
-
-    const email=document.getElementById("email").value;
-    const pesan=document.getElementById("pesan").value;
-
-    let data=JSON.parse(localStorage.getItem("feedback"))||[];
-
-    data.push({email,pesan});
-    localStorage.setItem("feedback",JSON.stringify(data));
-
-    document.getElementById("notif").innerText="Feedback berhasil dikirim 🙌";
-    e.target.reset();
 }
 
 </script>
