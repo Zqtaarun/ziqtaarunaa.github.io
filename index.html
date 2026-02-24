@@ -18,7 +18,6 @@
 body{
     background:linear-gradient(135deg,#0f172a,#1e293b);
     color:white;
-    overflow-x:hidden;
 }
 
 nav{
@@ -26,35 +25,26 @@ nav{
     backdrop-filter:blur(15px);
     padding:20px;
     text-align:center;
-    border-bottom:1px solid rgba(255,255,255,0.1);
+    position:sticky;
+    top:0;
 }
 
 nav a{
     color:#cbd5e1;
-    margin:0 15px;
+    margin:0 20px;
     text-decoration:none;
-    cursor:pointer;
     transition:.3s;
+    cursor:pointer;
 }
 
 nav a:hover{
     color:#38bdf8;
-    text-shadow:0 0 12px #38bdf8;
-}
-
-#userInfo{
-    margin-top:10px;
-    color:#38bdf8;
+    text-shadow:0 0 10px #38bdf8;
 }
 
 section{
-    padding:80px 20px;
+    padding:100px 20px;
     text-align:center;
-    display:none;
-}
-
-#home,#about,#feedback{
-    display:block;
 }
 
 .card{
@@ -65,8 +55,8 @@ section{
     margin:auto;
     border-radius:20px;
     border:1px solid rgba(255,255,255,0.1);
-    box-shadow:0 0 40px rgba(56,189,248,0.15);
-    transition:.4s;
+    box-shadow:0 0 40px rgba(56,189,248,0.2);
+    transition:.3s;
 }
 
 .card:hover{
@@ -74,32 +64,39 @@ section{
     box-shadow:0 0 60px rgba(56,189,248,0.5);
 }
 
-input,textarea{
-    width:100%;
-    padding:14px;
-    margin:12px 0;
+.link-btn{
+    display:inline-block;
+    margin:10px;
+    padding:10px 18px;
     border-radius:12px;
-    border:none;
-    background:rgba(255,255,255,0.08);
-    color:white;
-    outline:none;
-}
-
-button{
-    padding:14px;
-    width:100%;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(90deg,#38bdf8,#6366f1);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
+    background:rgba(56,189,248,0.2);
+    text-decoration:none;
+    color:#38bdf8;
     transition:.3s;
 }
 
-button:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 20px #38bdf8;
+.link-btn:hover{
+    background:#38bdf8;
+    color:white;
+}
+
+button{
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#38bdf8,#6366f1);
+    color:white;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:10px;
 }
 
 .error{
@@ -107,109 +104,73 @@ button:hover{
     font-size:14px;
 }
 
-.sosmed-btn{
-    display:inline-block;
-    margin:8px;
-    padding:10px 16px;
-    border-radius:12px;
-    background:rgba(56,189,248,0.15);
-    text-decoration:none;
-    color:#38bdf8;
-    transition:.3s;
-}
-
-.sosmed-btn:hover{
-    background:#38bdf8;
-    color:white;
-}
-
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.7);
+    background:rgba(0,0,0,0.7);
     backdrop-filter:blur(8px);
     justify-content:center;
     align-items:center;
 }
 
 .modal-content{
-    background:rgba(30,41,59,.95);
+    background:#1e293b;
     padding:40px;
     width:350px;
     border-radius:20px;
 }
 
 footer{
-    background:rgba(255,255,255,0.05);
-    padding:25px;
     text-align:center;
+    padding:30px;
+    background:rgba(255,255,255,0.05);
 }
 </style>
 </head>
 <body>
 
 <nav>
+    <a href="#home">Beranda</a>
+    <a href="#about">About Me</a>
+    <a href="#media">Media</a>
     <a onclick="openModal()">Login</a>
-    <div id="userInfo"></div>
 </nav>
 
+<!-- HOME -->
 <section id="home">
-    <h1>Welcome to My Library 📚</h1>
+    <h1>Welcome to My Library 🚀</h1>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
     <div class="card">
-        <h1>About Me</h1>
-        <p>Halo 👋 Ini adalah halaman portfolio saya.</p>
+        <h2>About Me</h2>
+        <p>Halo 👋 Saya Ziqta Aruna Syahidah.</p>
 
-        <div id="cvAbout" style="margin-top:20px;"></div>
-        <div id="sosmedAbout" style="margin-top:20px;"></div>
+        <a class="link-btn"
+        href="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1"
+        target="_blank">Instagram</a>
+
+        <a class="link-btn"
+        href="https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+        target="_blank">Lihat CV</a>
     </div>
 </section>
 
 <!-- MEDIA -->
 <section id="media">
     <div class="card">
-        <h1>Media</h1>
-        <div id="videoContainer"></div>
-        <br>
-        <input type="text" id="youtubeLink" placeholder="Masukkan link YouTube (https://youtu.be/xxxx)">
-        <button onclick="tambahVideo()">Tambah Video</button>
-        <br><br>
-        <button onclick="logout()">Logout</button>
+        <h2>Media</h2>
+        <p>Kunjungi YouTube saya:</p>
+
+        <a class="link-btn"
+        href="https://www.youtube.com/"
+        target="_blank">YouTube Channel</a>
     </div>
 </section>
 
-<!-- PROFILE TOOLS (LOGIN ONLY) -->
-<section id="profileTools">
-    <div class="card">
-        <h2>Upload CV</h2>
-        <input type="file" id="cvFile" accept=".pdf">
-        <button onclick="uploadCV()">https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton</button>
-
-        <hr style="margin:30px 0;border:1px solid rgba(255,255,255,0.1);">
-
-        <h2>Tambah Sosial Media</h2>
-        <input type="text" id="@zqtarunaa_" placeholder="Instagram">
-        <input type="text" id="https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1" placeholder="Sosial Media">
-        <button onclick="tambahSosmed()">Tambah Sosmed</button>
-    </div>
-</section>
-
-<section id="feedback">
-    <div class="card">
-        <h2>Feedback</h2>
-        <form onsubmit="kirimFeedback(event)">
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="pesan" rows="4" placeholder="Pesan" required></textarea>
-            <button type="submit">Kirim</button>
-        </form>
-        <p id="notif"></p>
-    </div>
-</section>
-
+<!-- MODAL LOGIN -->
 <div class="modal" id="authModal">
 <div class="modal-content">
 
@@ -219,15 +180,21 @@ footer{
 <input type="password" id="loginPassword" placeholder="Password">
 <button onclick="login()">Login</button>
 <p class="error" id="loginError"></p>
+<p style="margin-top:10px;font-size:14px;">
+Belum punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showRegister()">Daftar</span>
+</p>
 </div>
 
 <div id="registerForm" style="display:none;">
-<h2>Daftar</h2>
+<h2>Register</h2>
 <input type="text" id="regNama" placeholder="Nama Lengkap">
 <input type="email" id="regEmail" placeholder="Email">
 <input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
 <button onclick="register()">Daftar</button>
 <p class="error" id="registerError"></p>
+<p style="margin-top:10px;font-size:14px;">
+Sudah punya akun? <span style="color:#38bdf8;cursor:pointer;" onclick="showLogin()">Login</span>
+</p>
 </div>
 
 </div>
@@ -242,17 +209,20 @@ function openModal(){
     authModal.style.display="flex";
 }
 
-window.onload=function(){
-    const user=JSON.parse(localStorage.getItem("userLogin"));
-
-    loadCVAbout();
-    loadSosmedAbout();
-
-    if(user){
-        media.style.display="block";
-        profileTools.style.display="block";
-        userInfo.innerHTML="Halo, "+user.nama;
+window.onclick=function(e){
+    if(e.target==authModal){
+        authModal.style.display="none";
     }
+}
+
+function showRegister(){
+    loginForm.style.display="none";
+    registerForm.style.display="block";
+}
+
+function showLogin(){
+    registerForm.style.display="none";
+    loginForm.style.display="block";
 }
 
 function register(){
@@ -266,10 +236,16 @@ function register(){
     }
 
     let users=JSON.parse(localStorage.getItem("users"))||[];
+
+    if(users.find(u=>u.email===email)){
+        registerError.innerText="Email sudah terdaftar!";
+        return;
+    }
+
     users.push({nama,email,password});
     localStorage.setItem("users",JSON.stringify(users));
 
-    alert("Berhasil daftar! Silakan login.");
+    alert("Registrasi berhasil! Silakan login.");
     showLogin();
 }
 
@@ -282,7 +258,6 @@ function login(){
 
     if(!user){
         loginError.innerText="Akun tidak ditemukan. Silakan daftar.";
-        showRegister();
         return;
     }
 
@@ -291,102 +266,8 @@ function login(){
         return;
     }
 
-    localStorage.setItem("userLogin",JSON.stringify(user));
-    location.reload();
-}
-
-function showRegister(){
-    loginForm.style.display="none";
-    registerForm.style.display="block";
-}
-
-function showLogin(){
-    registerForm.style.display="none";
-    loginForm.style.display="block";
-}
-
-function logout(){
-    localStorage.removeItem("userLogin");
-    location.reload();
-}
-
-/* YOUTUBE */
-function tambahVideo(){
-    const link=youtubeLink.value;
-    const reg=/((youtu.be\/)|(v=))([^&]+)/;
-    const match=link.match(reg);
-    if(!match) return;
-
-    videoContainer.innerHTML=
-    `<iframe width="100%" height="250"
-    src="<iframe width="560" height="315" src="https://www.youtube.com/embed/phRZKH1tQsQ?si=2yZ-qK8aQqvYAIV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
-    style="border:none;border-radius:12px;"
-    allowfullscreen></iframe>`;
-}
-
-/* CV */
-function uploadCV(){
-    const file=cvFile.files[0];
-    if(!file || file.type!=="application/pdf"){
-        alert("https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
-        return;
-    }
-
-    const reader=new FileReader();
-    reader.onload=function(e){
-        localStorage.setItem("userCV",e.target.result);
-        loadCVAbout();
-    }
-    reader.readAsDataURL(file);
-}
-
-function loadCVAbout(){
-    const cv=localStorage.getItem("userCV");
-    if(cv){
-        cvAbout.innerHTML=
-        `<h3>Curriculum Vitae</h3>
-        <a href="${cv}" download="CV.pdf">
-        <button style="margin-top:10px;">Download CV</button>
-        </a>`;
-    }else{
-        cvAbout.innerHTML="<p style='color:#94a3b8;'>https://www.canva.com/design/DAHBldfUCrE/4Ik9m8lMyLb74QIA0jqIOw/edit?utm_content=DAHBldfUCrE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton.</p>";
-    }
-}
-
-/* SOSMED */
-function tambahSosmed(){
-    const nama=sosmedNama.value.trim();
-    const link=sosmedLink.value.trim();
-    if(!zqtarunaa_ || !"https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1") return;
-
-    let list=JSON.parse(localStorage.getItem("sosmedList"))||[];
-    list.push({nama,link});
-    localStorage.setItem("sosmedList",JSON.stringify(list));
-
-    sosmedNama.value="";
-    sosmedLink.value="";
-    loadSosmedAbout();
-}
-
-function loadSosmedAbout(){
-    const list=JSON.parse(localStorage.getItem("sosmedList"))||[];
-    sosmedAbout.innerHTML="<h3>Sosial Media</h3>";
-
-    if(list.length===0){
-        sosmedAbout.innerHTML+="<p style='color:#94a3b8;'>https://www.instagram.com/zqtarunaa_?igsh=bzRibTBzbHkzbGY1.</p>";
-        return;
-    }
-
-    list.forEach(item=>{
-        sosmedAbout.innerHTML+=
-        `<a class="sosmed-btn" href="${item.link}" target="_blank">${item.nama}</a>`;
-    });
-}
-
-function kirimFeedback(e){
-    e.preventDefault();
-    notif.innerText="Terima kasih atas feedbacknya 🙌";
-    e.target.reset();
+    alert("Login berhasil!");
+    authModal.style.display="none";
 }
 </script>
 
