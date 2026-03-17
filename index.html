@@ -3,561 +3,297 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Runa Kala Library </title>
+<title>Runa Kala Library</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-html{ scroll-behavior:smooth; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
 :root{
-    --saffron:#F77F00;          /* Aruna energy */
-    --warm-gold:#E6B325;        /* Light & value */
-    --deep-maroon:#5A1E2A;      /* Bollywood elegance */
-    --cream:#F8F1E5;            /* Clean base */
-    --peach-gold:linear-gradient(135deg,#FFB07C,#F6C453);
+--saffron:#F77F00;
+--gold:#E6B325;
+--maroon:#5A1E2A;
+--cream:#F8F1E5;
 }
 
-body{
-    background:var(--cream);
-    color:var(--deep-maroon);
-}
+body{background:var(--cream);color:var(--maroon);}
 
-/* NAVBAR */
+/* NAV */
 nav{
-    background:rgba(248,241,229,0.95);
-    padding:18px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:999;
-    border-bottom:2px solid var(--warm-gold);
+display:flex;
+justify-content:space-between;
+padding:15px 8%;
+background:white;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid var(--gold);
 }
 
 nav a{
-    margin:0 18px;
-    text-decoration:none;
-    color:var(--deep-maroon);
-    font-weight:500;
-    transition:.3s;
+margin:0 10px;
+text-decoration:none;
+color:var(--maroon);
+font-weight:500;
+cursor:pointer;
 }
 
-nav a:hover{
-    color:var(--saffron);
-}
+.logo{font-weight:700;font-size:20px;}
 
-/* HERO */
 .hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    background:var(--peach-gold);
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#FFB07C,#F6C453);
 }
 
-.hero h1{
-    font-size:3.2rem;
-    margin-bottom:20px;
-}
+.hero h1{font-size:50px;}
+.hero p{margin:15px 0;}
 
-.hero p{
-    max-width:600px;
-    margin-bottom:35px;
-    font-size:1.1rem;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.hero-buttons a{
-    padding:14px 32px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
-
-.primary-btn{
-    background:var(--deep-maroon);
-    color:white;
-}
-
-.secondary-btn{
-    border:2px solid var(--deep-maroon);
-    color:var(--deep-maroon);
-}
-
-.hero-buttons a:hover{
-    transform:translateY(-4px);
-}
-
-/* SECTION */
 .section{
-    padding:100px 15%;
-    border-bottom:1px solid var(--warm-gold);
+padding:80px 10%;
 }
 
-.section:nth-child(even){
-    background:#fff;
-}
-
-.section h2{
-    font-size:2rem;
-    margin-bottom:30px;
-    color:var(--deep-maroon);
-}
-
-.section p{
-    line-height:1.8;
-    margin-bottom:15px;
-}
-
-/* MEDIA */
-iframe{
-    width:100%;
-    border-radius:12px;
-    margin-top:20px;
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-top:15px;
 }
 
 /* FORM */
 input, textarea{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:1px solid var(--warm-gold);
-    border-radius:8px;
-    background:white;
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
 button{
-    padding:12px 20px;
-    border:none;
-    border-radius:8px;
-    background:var(--deep-maroon);
-    color:white;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    background:var(--saffron);
-}
-
-/* LOGIN MODAL */
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.4);
-    justify-content:center;
-    align-items:center;
-}
-
-.modal-content{
-    background:white;
-    padding:40px;
-    width:350px;
-    border-radius:15px;
-    border-top:6px solid var(--warm-gold);
-}
-
-.error{ color:#c0392b; font-size:14px; }
-
-footer{
-    text-align:center;
-    padding:30px;
-    background:var(--deep-maroon);
-    color:white;
-}
-    <style>
-
-/* LOGO PREMIUM */
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-weight:700;
-    font-size:1.3rem;
-    color:var(--deep-maroon);
-    letter-spacing:1px;
-    opacity:0;
-    animation:fadeInLogo 1.5s ease forwards;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo img{
-    height:45px;
-    width:auto;
-    object-fit:contain;
-}
-
-.logo span{
-    font-size:20px;
-    font-weight:600;
-    letter-spacing:1px;
-}
-    .hero img{
-    display:none;
-}
-
-/* GOLD GLOW HOVER */
-.logo:hover img{
-    filter:drop-shadow(0 0 8px var(--warm-gold));
-    transform:scale(1.05);
-}
-
-@keyframes fadeInLogo{
-    to{ opacity:1; }
-}
-
-/* NAV SHRINK ON SCROLL */
-nav{
-    transition:.4s ease;
-}
-
-nav.shrink{
-    padding:10px 8%;
-    backdrop-filter:blur(10px);
-}
-
-/* HERO LOGO CINEMATIC */
-.hero-logo{
-    height:110px;
-    margin-bottom:25px;
-    opacity:0;
-    transform:translateY(20px);
-    animation:heroReveal 1.8s ease forwards;
-}
-
-@keyframes heroReveal{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* HERO TEXT ANIMATION */
-.hero h1{
-    font-size:60px;
-    font-weight:700;
-    letter-spacing:2px;
-}
-
-.hero p{
-    font-size:18px;
-    opacity:0.8;
-    margin-top:15px;
-}
-
-.hero-buttons{
-    opacity:0;
-    animation:fadeUp 1.5s ease forwards;
-    animation-delay:1.2s;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-</style>
-</head>
-<body>
-
-
-<nav>
-    <div class="logo">
-    <img src="LOGO 1.png" alt="Logo" style="height:50px;">
-    <span>Runa Kala Library</span>
-</div>
-    </div>
-
-    <div class="nav-links">
-        <a href="#home">Beranda</a>
-        <a href="#about">About</a>
-        <a href="#aboutus">About Us</a>
-        <a href="#media">Media</a>
-        <a href="#feedback">Feedback</a>
-        <a onclick="openModal()">Login</a>
-    </div>
-
-</nav>
-
-<section class="hero" id="home">
-    <h1>RUNA KALA LIBRARY</h1>
-    <p>
-        A Dawn of Stories and Creative Expression ✨.
-    </p>
-
-    <div class="hero-buttons">
-        <a href="#about" class="primary-btn">Explore the Space</a>
-        <a href="#media" class="secondary-btn">Enter the Library</a>
-    </div>
-</section>
-
-<section id="about">
-  <section class="section" id="about">
-    <h2>About the Founder</h2>
-    <p><strong>Ziqta Aruna Syahidah</strong></p>
-    <p>
-    Runa Kala Library lahir dari semangat cahaya fajar — tempat warna, seni, dan cerita bertemu. Sebuah ruang pribadi yang merayakan literasi, kreativitas, dan ekspresi.
-    </p>
-
-    <p>
-    📌 <a href="https://www.canva.com/design/DAHBldfUCrE/" target="_blank">Curriculum Vitae</a><br>
-    📷 <a href="https://www.instagram.com/zqtarunaa_" target="_blank">@zqtarunaa_</a>
-    </p>
-</section>
-
-<section class="section" id="aboutus">
-    <h2>About Us</h2>
-
-    <p>🎓 Students & University Learners</p>
-    <p>💡 Independent Creators</p>
-    <p>📚 Bibliophiles</p>
-    <p>🌐 Abibliophobia & Book-bosomed</p>
-
-    <p>
-   Runa Kala Library represents the quiet power of dawn — a moment where darkness turns into possibility. “Runa” carries the whisper of Aruna, the light before sunrise. “Kala” honors art as a language beyond borders. 
-   This is not just a library. It is a living canvas of stories.
-    </p>
-</section>
-    
-<section class="section" id="media">
-    <h2>Media</h2>
-    
-    <iframe height="315"
-    src="https://www.youtube.com/embed/phRZKH1tQsQ?si=_I8tcmfsz3kQLNib"
-    allowfullscreen></iframe>
-</section>
-
-<section class="section" id="feedback">
-    <h2>Feedback</h2>
-
-    <form onsubmit="kirimFeedback(event)">
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea rows="4" id="pesan" placeholder="Share your thoughts..." required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-
-    <p id="notif"></p>
-</section>
-
-<!-- LOGIN MODAL -->
-<div class="modal" id="authModal">
-<div class="modal-content">
-
-<div id="loginForm">
-<h2>Login</h2>
-<input type="email" id="loginEmail" placeholder="Email">
-<input type="password" id="loginPassword" placeholder="Password">
-<button onclick="login()">Login</button>
-<p class="error" id="loginError"></p>
-    
-<p>Belum punya akun?
-<span style="color:#0ea5e9;cursor:pointer;" onclick="openRegisterTab()">Daftar</span>
-</p>
-</div>
-    
-</p>
-</div>
-    
-</div>
-
-<footer>
-© 2026 Ziqta Aruna Syahidah
-</footer>
-
-<script>
-    function openRegisterTab(){
-
-let newTab = window.open("", "_blank");
-
-newTab.document.write(`
-<html>
-<head>
-<title>Register</title>
-<style>
-body{
-font-family:Poppins, sans-serif;
-background:linear-gradient(135deg,#e0f2fe,#fdf4ff);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
-.box{
-background:white;
-padding:40px;
-width:350px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.1);
-}
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:1px solid #cbd5e1;
-border-radius:10px;
-}
-button{
-width:100%;
-padding:12px;
+padding:10px;
 border:none;
-border-radius:10px;
-background:linear-gradient(90deg,#38bdf8,#a78bfa);
+background:var(--maroon);
 color:white;
+border-radius:8px;
 cursor:pointer;
 }
-.error{color:#ef4444;font-size:14px;}
-</style>
-</head>
-<body>
 
-<div class="box">
-<h2>Register</h2>
-
-<input type="text" id="regNama" placeholder="Nama Lengkap">
-<input type="email" id="regEmail" placeholder="Email">
-<input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
-<button onclick="register()">Daftar</button>
-<p class="error" id="registerError"></p>
-</div>
-
-<script>
-function register(){
-const nama=document.getElementById("regNama").value.trim();
-const email=document.getElementById("regEmail").value.trim();
-const password=document.getElementById("regPassword").value.trim();
-
-if(password.length<6){
-document.getElementById("registerError").innerText="Password minimal 6 karakter!";
-return;
-}
-
-let users=JSON.parse(localStorage.getItem("users"))||[];
-
-if(users.find(u=>u.email===email)){
-document.getElementById("registerError").innerText="Email sudah terdaftar!";
-return;
-}
-
-users.push({nama,email,password});
-localStorage.setItem("users",JSON.stringify(users));
-
-alert("Registrasi berhasil! Silakan login.");
-window.close();
-}
-<\/script>
-
-</body>
-</html>
-`);
+/* FORUM */
+.post{
+border-left:4px solid var(--saffron);
+padding:10px;
+margin-top:10px;
+background:white;
+border-radius:8px;
 }
 
 /* MODAL */
-function openModal(){ authModal.style.display="flex"; }
-window.onclick=function(e){
-if(e.target==authModal){ authModal.style.display="none"; }
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.4);
+justify-content:center;
+align-items:center;
 }
 
-function showRegister(){
-loginForm.style.display="none";
-registerForm.style.display="block";
-}
-function showLogin(){
-registerForm.style.display="none";
-loginForm.style.display="block";
+.modal-box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:300px;
 }
 
-/* REGISTER */
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Runa Kala Library</div>
+<div>
+<a href="#home">Home</a>
+<a href="#forum">Forum</a>
+<a href="#events">Events</a>
+<a onclick="openModal()">Login</a>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<h1>RUNA KALA LIBRARY</h1>
+<p id="userGreeting">A creative space for stories ✨</p>
+</section>
+
+<!-- FORUM -->
+<section class="section" id="forum">
+<h2>Community Forum</h2>
+
+<form onsubmit="postForum(event)">
+<textarea id="forumText" placeholder="Tulis sesuatu..." required></textarea>
+<button>Post</button>
+</form>
+
+<div id="forumList"></div>
+</section>
+
+<!-- EVENTS -->
+<section class="section" id="events">
+<h2>Library Events</h2>
+
+<div class="card">
+<h3>Creative Writing Workshop</h3>
+<p>12 April 2026</p>
+<button onclick="openEventForm('Creative Writing Workshop')">Daftar</button>
+</div>
+
+<div class="card">
+<h3>Book Discussion Night</h3>
+<p>25 April 2026</p>
+<button onclick="openEventForm('Book Discussion Night')">Daftar</button>
+</div>
+
+<p id="eventNotif"></p>
+</section>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+
+<h3>Login</h3>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<p>Belum punya akun? <span onclick="register()" style="color:blue;cursor:pointer;">Daftar</span></p>
+
+</div>
+</div>
+
+<script>
+
+/* ================= LOGIN ================= */
+
+function openModal(){
+modal.style.display="flex";
+}
+
+window.onclick=(e)=>{
+if(e.target==modal) modal.style.display="none";
+}
+
 function register(){
-const nama=regNama.value.trim();
-const email=regEmail.value.trim();
-const password=regPassword.value.trim();
+let email=prompt("Masukkan email:");
+let pass=prompt("Password (min 6 karakter):");
 
-if(password.length<6){
-registerError.innerText="Password minimal 6 karakter!";
-return;
-}
+if(pass.length<6){alert("Password terlalu pendek");return;}
 
 let users=JSON.parse(localStorage.getItem("users"))||[];
 
 if(users.find(u=>u.email===email)){
-registerError.innerText="Email sudah terdaftar!";
+alert("Sudah terdaftar!");
 return;
 }
 
-users.push({nama,email,password});
+users.push({email,pass});
 localStorage.setItem("users",JSON.stringify(users));
 
 alert("Registrasi berhasil!");
-showLogin();
 }
 
-/* LOGIN */
 function login(){
-const email=loginEmail.value.trim();
-const password=loginPassword.value.trim();
+let e=email.value;
+let p=password.value;
+
 let users=JSON.parse(localStorage.getItem("users"))||[];
 
-const user=users.find(u=>u.email===email && u.password===password);
+let user=users.find(u=>u.email===e && u.pass===p);
 
 if(!user){
-loginError.innerText="Email atau password salah!";
+alert("Login gagal!");
 return;
 }
 
-alert("Login berhasil!");
-authModal.style.display="none";
+localStorage.setItem("activeUser", e);
+
+userGreeting.innerHTML="Welcome, "+e+" ✨";
+modal.style.display="none";
 }
 
-/* FEEDBACK */
-function kirimFeedback(e){
+/* ================= FORUM ================= */
+
+function postForum(e){
 e.preventDefault();
 
-let feedbacks=JSON.parse(localStorage.getItem("feedbacks"))||[];
-feedbacks.push({
-email:email.value,
-pesan:pesan.value,
-tanggal:new Date().toLocaleString()
-});
+let user=localStorage.getItem("activeUser");
 
-localStorage.setItem("feedbacks",JSON.stringify(feedbacks));
-
-notif.innerHTML="<span class='success'>Feedback berhasil dikirim ✨</span>";
-e.target.reset();
+if(!user){
+alert("Login dulu!");
+return;
 }
-    window.addEventListener("scroll", function(){
-    const nav = document.querySelector("nav");
-    nav.classList.toggle("shrink", window.scrollY > 50);
+
+let posts=JSON.parse(localStorage.getItem("posts"))||[];
+
+posts.push({
+user:user,
+text:forumText.value,
+time:new Date().toLocaleString()
 });
-    
+
+localStorage.setItem("posts",JSON.stringify(posts));
+
+forumText.value="";
+loadForum();
+}
+
+function loadForum(){
+let posts=JSON.parse(localStorage.getItem("posts"))||[];
+
+let html="";
+posts.reverse().forEach(p=>{
+html+=`
+<div class="post">
+<b>${p.user}</b>
+<p>${p.text}</p>
+<small>${p.time}</small>
+</div>
+`;
+});
+
+forumList.innerHTML=html;
+}
+
+loadForum();
+
+/* ================= EVENTS ================= */
+
+function openEventForm(nama){
+let namaUser=prompt("Nama kamu:");
+let email=prompt("Email kamu:");
+
+let data=JSON.parse(localStorage.getItem("event"))||[];
+
+data.push({
+event:nama,
+nama:namaUser,
+email:email
+});
+
+localStorage.setItem("event",JSON.stringify(data));
+
+eventNotif.innerHTML="✅ Berhasil daftar "+nama;
+}
+
+/* LOAD USER */
+let active=localStorage.getItem("activeUser");
+if(active){
+userGreeting.innerHTML="Welcome, "+active+" ✨";
+}
+
 </script>
 
 </body>
