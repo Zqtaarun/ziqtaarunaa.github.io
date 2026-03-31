@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Runa Kala Library</title>
+<title>Runa Kala Library </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<style>
 <style>
 *{
     margin:0;
@@ -15,11 +16,13 @@
     font-family:'Poppins',sans-serif;
 }
 
+html{ scroll-behavior:smooth; }
+
 :root{
-    --saffron:#F77F00;
-    --warm-gold:#E6B325;
-    --deep-maroon:#5A1E2A;
-    --cream:#F8F1E5;
+    --saffron:#F77F00;          /* Aruna energy */
+    --warm-gold:#E6B325;        /* Light & value */
+    --deep-maroon:#5A1E2A;      /* Bollywood elegance */
+    --cream:#F8F1E5;            /* Clean base */
     --peach-gold:linear-gradient(135deg,#FFB07C,#F6C453);
 }
 
@@ -28,22 +31,27 @@ body{
     color:var(--deep-maroon);
 }
 
-/* NAV */
+/* NAVBAR */
 nav{
     background:rgba(248,241,229,0.95);
     padding:18px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:2px solid var(--warm-gold);
+    text-align:center;
     position:sticky;
     top:0;
+    z-index:999;
+    border-bottom:2px solid var(--warm-gold);
 }
 
 nav a{
-    margin:0 10px;
+    margin:0 18px;
     text-decoration:none;
     color:var(--deep-maroon);
+    font-weight:500;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--saffron);
 }
 
 /* HERO */
@@ -54,47 +62,102 @@ nav a{
     justify-content:center;
     align-items:center;
     text-align:center;
+    padding:20px;
     background:var(--peach-gold);
 }
 
-.hero h1{ font-size:3rem; }
+.hero h1{
+    font-size:3.2rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:600px;
+    margin-bottom:35px;
+    font-size:1.1rem;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-buttons a{
+    padding:14px 32px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary-btn{
+    background:var(--deep-maroon);
+    color:white;
+}
+
+.secondary-btn{
+    border:2px solid var(--deep-maroon);
+    color:var(--deep-maroon);
+}
+
+.hero-buttons a:hover{
+    transform:translateY(-4px);
+}
 
 /* SECTION */
 .section{
-    padding:80px 15%;
+    padding:100px 15%;
+    border-bottom:1px solid var(--warm-gold);
 }
 
-/* BOOK */
-.book-card{
-    background:white;
-    padding:15px;
-    margin:10px 0;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.book-detail{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    margin-top:20px;
-}
-
-.review-item{
+.section:nth-child(even){
     background:#fff;
-    padding:10px;
-    margin-top:10px;
-    border-left:3px solid var(--warm-gold);
+}
+
+.section h2{
+    font-size:2rem;
+    margin-bottom:30px;
+    color:var(--deep-maroon);
+}
+
+.section p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* MEDIA */
+iframe{
+    width:100%;
+    border-radius:12px;
+    margin-top:20px;
 }
 
 /* FORM */
 input, textarea{
     width:100%;
-    padding:10px;
+    padding:12px;
     margin:10px 0;
+    border:1px solid var(--warm-gold);
+    border-radius:8px;
+    background:white;
 }
 
-/* MODAL */
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:var(--deep-maroon);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:var(--saffron);
+}
+
+/* LOGIN MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -106,168 +169,508 @@ input, textarea{
 
 .modal-content{
     background:white;
-    padding:30px;
-    width:300px;
+    padding:40px;
+    width:350px;
+    border-radius:15px;
+    border-top:6px solid var(--warm-gold);
 }
 
-/* FORUM */
-.forum-post{
-    background:white;
-    padding:10px;
-    margin-top:10px;
-}
+.error{ color:#c0392b; font-size:14px; }
 
 footer{
     text-align:center;
-    padding:20px;
+    padding:30px;
     background:var(--deep-maroon);
     color:white;
 }
+    <style>
+
+/* LOGO PREMIUM */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--deep-maroon);
+    letter-spacing:1px;
+    opacity:0;
+    animation:fadeInLogo 1.5s ease forwards;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo img{
+    height:45px;
+    width:auto;
+    object-fit:contain;
+}
+
+.logo span{
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+    .hero img{
+    display:none;
+}
+
+/* GOLD GLOW HOVER */
+.logo:hover img{
+    filter:drop-shadow(0 0 8px var(--warm-gold));
+    transform:scale(1.05);
+}
+
+@keyframes fadeInLogo{
+    to{ opacity:1; }
+}
+
+/* NAV SHRINK ON SCROLL */
+nav{
+    transition:.4s ease;
+}
+
+nav.shrink{
+    padding:10px 8%;
+    backdrop-filter:blur(10px);
+}
+
+/* HERO LOGO CINEMATIC */
+.hero-logo{
+    height:110px;
+    margin-bottom:25px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:heroReveal 1.8s ease forwards;
+}
+
+@keyframes heroReveal{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HERO TEXT ANIMATION */
+.hero h1{
+    font-size:60px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.hero p{
+    font-size:18px;
+    opacity:0.8;
+    margin-top:15px;
+}
+
+.hero-buttons{
+    opacity:0;
+    animation:fadeUp 1.5s ease forwards;
+    animation-delay:1.2s;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+  /* FORUM */
+.forum-post{
+background:white;
+padding:15px;
+margin-top:10px;
+border-radius:10px;
+border-left:4px solid var(--saffron);
+}
+
+/* EVENTS */
+.event-card{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:12px;
+border:1px solid var(--warm-gold);
+}
+  .book-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    border:1px solid var(--warm-gold);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.book-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.book-detail{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    border-left:6px solid var(--saffron);
+}
+
+.review-box{
+    margin-top:20px;
+}
+
+.review-item{
+    background:#fff;
+    padding:10px;
+    border-radius:8px;
+    margin-top:10px;
+    border-left:3px solid var(--warm-gold);
+}
+    
 </style>
 </head>
-
 <body>
 
-<!-- NAV -->
+
 <nav>
-<div><b>Runa Kala Library</b></div>
-<div>
-<a href="#home">Home</a>
-<a href="#books">Books</a>
-<a href="#forum">Forum</a>
-<a onclick="openModal()">Login</a>
+    <div class="logo">
+    <img src="LOGO 1.png" alt="Logo" style="height:50px;">
+    <span>Runa Kala Library</span>
+</div>
+    </div>
+
+    <div class="nav-links">
+    <a href="#home">Beranda</a>
+    <a href="#admin">Admin</a>
+    <a href="#aboutus">About Us</a>
+    <a href="#media">Media</a>
+    <a href="#forum">Community</a>
+    <a href="#events">Events</a>
+    <a href="#feedback">Feedback</a>
+    <a onclick="openModal()">Login</a>
 </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
-<h1>Runa Kala Library</h1>
-<p>A Dawn of Stories ✨</p>
+    <h1>RUNA KALA LIBRARY</h1>
+    <p>
+        A Dawn of Stories and Creative Expression ✨.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#admin" class="primary-btn">Explore the Space</a>
+        <a href="#media" class="secondary-btn">Enter the Library</a>
+    </div>
 </section>
 
-<!-- BOOK -->
-<section class="section" id="books">
+<section id="admin">
+  <section class="section" id="admin">
+    <h2>Admin & founder</h2>
+    <p><strong>Ziqta Aruna Syahidah</strong></p>
+    <p>
+    Runa Kala Library lahir dari semangat cahaya fajar — tempat warna, seni, dan cerita bertemu. Sebuah ruang pribadi yang merayakan literasi, kreativitas, dan ekspresi.
+    </p>
+
+    <p>
+    📌 <a href="https://www.canva.com/design/DAHBldfUCrE/" target="_blank">Curriculum Vitae</a><br>
+    📷 <a href="https://www.instagram.com/zqtarunaa_" target="_blank">@zqtarunaa_</a>
+    </p>
+</section>
+
+<section class="section" id="aboutus">
+    <h2>About Us</h2>
+
+    <p>🎓 Students & University Learners</p>
+    <p>💡 Independent Creators</p>
+    <p>📚 Bibliophiles</p>
+    <p>🌐 Abibliophobia & Book-bosomed</p>
+
+    <p>
+   Runa Kala Library represents the quiet power of dawn — a moment where darkness turns into possibility. “Runa” carries the whisper of Aruna, the light before sunrise. “Kala” honors art as a language beyond borders. 
+   This is not just a library. It is a living canvas of stories.
+    </p>
+</section>
+    
+<section class="section" id="media">
+    <h2>Media</h2>
+    
+    <iframe height="315"
+    src="https://www.youtube.com/embed/phRZKH1tQsQ?si=_I8tcmfsz3kQLNib"
+    allowfullscreen></iframe>
+</section>
+
+    <section class="section" id="books">
 <h2>Book Collection</h2>
+
 <div id="bookList"></div>
-<div id="bookDetail"></div>
+
+<div id="bookDetail" style="margin-top:40px;"></div>
+
 </section>
 
-<!-- FORUM -->
-<section class="section" id="forum">
-<h2>Forum</h2>
+  <section class="section" id="forum">
+<h2>Community Forum</h2>
 
 <form onsubmit="postForum(event)">
-<input id="forumPesan" placeholder="Tulis sesuatu...">
-<button>Post</button>
+<input type="text" id="forumNama" placeholder="Nama Anda (login dulu)" required>
+<textarea id="forumPesan" rows="3" placeholder="Tulis sesuatu..." required></textarea>
+<button type="submit">Post</button>
 </form>
 
 <div id="forumList"></div>
 </section>
 
-<!-- LOGIN -->
+<section class="section" id="feedback">
+    <h2>Feedback</h2>
+
+    <form onsubmit="kirimFeedback(event)">
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea rows="4" id="pesan" placeholder="Share your thoughts..." required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <p id="notif"></p>
+</section>
+
+  <section class="section" id="events">
+<h2>Library Events</h2>
+
+<div class="event-card">
+<h3>Creative Writing Workshop</h3>
+<p>20 Februari 2028</p>
+<button onclick="openEventForm('Creative Writing Workshop')">Daftar</button>
+</div>
+
+<div class="event-card">
+<h3>Book Discussion Night</h3>
+<p>25 April 2028</p>
+<button onclick="openEventForm('Book Discussion Night')">Daftar</button>
+</div>
+
+<p id="notifEvent"></p>
+</section>
+
+<!-- LOGIN MODAL -->
 <div class="modal" id="authModal">
 <div class="modal-content">
+
+<div id="loginForm">
 <h2>Login</h2>
-<input id="loginEmail" placeholder="Email">
-<input id="loginPassword" placeholder="Password">
+<input type="email" id="loginEmail" placeholder="Email">
+<input type="password" id="loginPassword" placeholder="Password">
 <button onclick="login()">Login</button>
-<p id="loginError"></p>
+<p class="error" id="loginError"></p>
+    
+<p>Belum punya akun?
+<span style="color:#0ea5e9;cursor:pointer;" onclick="openRegisterTab()">Daftar</span>
+</p>
 </div>
+    
+</p>
+</div>
+    
 </div>
 
-<footer>© 2026 Runa Kala Library</footer>
+<footer>
+© 2026 Ziqta Aruna Syahidah
+</footer>
 
 <script>
+    function openRegisterTab(){
 
-/* ================= LOGIN ================= */
+let newTab = window.open("", "_blank");
 
+newTab.document.write(`
+<html>
+<head>
+<title>Register</title>
+<style>
+body{
+font-family:Poppins, sans-serif;
+background:linear-gradient(135deg,#e0f2fe,#fdf4ff);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+.box{
+background:white;
+padding:40px;
+width:350px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+}
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #cbd5e1;
+border-radius:10px;
+}
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#38bdf8,#a78bfa);
+color:white;
+cursor:pointer;
+}
+.error{color:#ef4444;font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Register</h2>
+
+<input type="text" id="regNama" placeholder="Nama Lengkap">
+<input type="email" id="regEmail" placeholder="Email">
+<input type="password" id="regPassword" placeholder="Password (min 6 karakter)">
+<button onclick="register()">Daftar</button>
+<p class="error" id="registerError"></p>
+</div>
+
+<script>
+function register(){
+const nama=document.getElementById("regNama").value.trim();
+const email=document.getElementById("regEmail").value.trim();
+const password=document.getElementById("regPassword").value.trim();
+
+if(password.length<6){
+document.getElementById("registerError").innerText="Password minimal 6 karakter!";
+return;
+}
+
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+if(users.find(u=>u.email===email)){
+document.getElementById("registerError").innerText="Email sudah terdaftar!";
+return;
+}
+
+users.push({nama,email,password});
+localStorage.setItem("users",JSON.stringify(users));
+
+alert("Registrasi berhasil! Silakan login.");
+window.close();
+}
+<\/script>
+
+</body>
+</html>
+`);
+}
+
+/* MODAL */
 function openModal(){ authModal.style.display="flex"; }
-
 window.onclick=function(e){
 if(e.target==authModal){ authModal.style.display="none"; }
 }
 
-function login(){
-let email=loginEmail.value;
-let password=loginPassword.value;
+function showRegister(){
+loginForm.style.display="none";
+registerForm.style.display="block";
+}
+function showLogin(){
+registerForm.style.display="none";
+loginForm.style.display="block";
+}
 
-let users=JSON.parse(localStorage.getItem("users"))||[];
+/* REGISTER */
+function register(){
+const nama=regNama.value.trim();
+const email=regEmail.value.trim();
+const password=regPassword.value.trim();
 
-let user=users.find(u=>u.email===email && u.password===password);
-
-if(!user){
-loginError.innerText="Salah!";
+if(password.length<6){
+registerError.innerText="Password minimal 6 karakter!";
 return;
 }
 
-localStorage.setItem("activeUser",email);
-alert("Login berhasil");
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+if(users.find(u=>u.email===email)){
+registerError.innerText="Email sudah terdaftar!";
+return;
+}
+
+users.push({nama,email,password});
+localStorage.setItem("users",JSON.stringify(users));
+
+alert("Registrasi berhasil!");
+showLogin();
+}
+
+/* LOGIN */
+function login(){
+const email=loginEmail.value.trim();
+const password=loginPassword.value.trim();
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+const user=users.find(u=>u.email===email && u.password===password);
+
+if(!user){
+loginError.innerText="Email atau password salah!";
+return;
+}
+
+alert("Login berhasil!");
 authModal.style.display="none";
 }
 
-/* ================= BOOK ================= */
+/* FEEDBACK */
+function kirimFeedback(e){
+e.preventDefault();
 
-let books=[
-{id:1,judul:"Laut Bercerita",penulis:"Leila S. Chudori",sinopsis:"Kisah aktivis."},
-{id:2,judul:"Filosofi Teras",penulis:"Henry Manampiring",sinopsis:"Stoisisme modern."}
-];
-
-function loadBooks(){
-let html="";
-books.forEach(b=>{
-html+=`<div class="book-card" onclick="showBook(${b.id})">
-<h3>${b.judul}</h3>
-<p>${b.penulis}</p>
-</div>`;
-});
-bookList.innerHTML=html;
-}
-loadBooks();
-
-function showBook(id){
-let b=books.find(x=>x.id===id);
-
-bookDetail.innerHTML=`
-<div class="book-detail">
-<h2>${b.judul}</h2>
-<p>${b.sinopsis}</p>
-
-<textarea id="reviewText"></textarea>
-<button onclick="kirimReview(${id})">Kirim</button>
-
-<div id="reviewList"></div>
-</div>
-`;
-
-tampilkanReview(id);
-}
-
-/* ================= REVIEW ================= */
-
-function kirimReview(id){
-let user=localStorage.getItem("activeUser");
-if(!user){ alert("Login dulu"); return; }
-
-let text=reviewText.value;
-
-let reviews=JSON.parse(localStorage.getItem("reviews"))||[];
-
-reviews.push({id,user,text});
-localStorage.setItem("reviews",JSON.stringify(reviews));
-
-reviewText.value="";
-tampilkanReview(id);
-}
-
-function tampilkanReview(id){
-let reviews=JSON.parse(localStorage.getItem("reviews"))||[];
-
-let html="";
-reviews.filter(r=>r.id===id).forEach(r=>{
-html+=`<div class="review-item"><b>${r.user}</b><p>${r.text}</p></div>`;
+let feedbacks=JSON.parse(localStorage.getItem("feedbacks"))||[];
+feedbacks.push({
+email:email.value,
+pesan:pesan.value,
+tanggal:new Date().toLocaleString()
 });
 
-reviewList.innerHTML=html;
+localStorage.setItem("feedbacks",JSON.stringify(feedbacks));
+
+notif.innerHTML="<span class='success'>Feedback berhasil dikirim ✨</span>";
+e.target.reset();
+}
+    window.addEventListener("scroll", function(){
+    const nav = document.querySelector("nav");
+    nav.classList.toggle("shrink", window.scrollY > 50);
+});
+
+  /* ================= USER SESSION ================= */
+
+function setActiveUser(email){
+localStorage.setItem("activeUser", email);
+}
+
+/* ================= UPDATE LOGIN ================= */
+function login(){
+const email=loginEmail.value.trim();
+const password=loginPassword.value.trim();
+let users=JSON.parse(localStorage.getItem("users"))||[];
+
+const user=users.find(u=>u.email===email && u.password===password);
+
+if(!user){
+loginError.innerText="Email atau password salah!";
+return;
+}
+
+setActiveUser(email);
+alert("Login berhasil!");
+authModal.style.display="none";
 }
 
 /* ================= FORUM ================= */
@@ -276,29 +679,194 @@ function postForum(e){
 e.preventDefault();
 
 let user=localStorage.getItem("activeUser");
-if(!user){ alert("Login dulu"); return; }
 
-let posts=JSON.parse(localStorage.getItem("forum"))||[];
-
-posts.push({user,text:forumPesan.value});
-localStorage.setItem("forum",JSON.stringify(posts));
-
-forumPesan.value="";
-loadForum();
+if(!user){
+alert("Harus login dulu!");
+return;
 }
 
-function loadForum(){
-let posts=JSON.parse(localStorage.getItem("forum"))||[];
+let posts=JSON.parse(localStorage.getItem("forumPosts"))||[];
+
+posts.push({
+nama:user,
+pesan:forumPesan.value,
+tanggal:new Date().toLocaleString()
+});
+
+localStorage.setItem("forumPosts",JSON.stringify(posts));
+
+forumPesan.value="";
+tampilkanForum();
+}
+
+function tampilkanForum(){
+let posts=JSON.parse(localStorage.getItem("forumPosts"))||[];
 
 let html="";
-posts.forEach(p=>{
-html+=`<div class="forum-post"><b>${p.user}</b><p>${p.text}</p></div>`;
+
+posts.reverse().forEach(p=>{
+html+=`
+<div class="forum-post">
+<strong>${p.nama}</strong>
+<p>${p.pesan}</p>
+<small>${p.tanggal}</small>
+</div>
+`;
 });
 
 forumList.innerHTML=html;
 }
-loadForum();
 
+tampilkanForum();
+
+/* ================= EVENTS ================= */
+
+function openEventForm(namaEvent){
+
+let nama=prompt("Nama kamu:");
+let email=prompt("Email kamu:");
+
+if(!nama || !email){
+alert("Harap isi data!");
+return;
+}
+
+let data=JSON.parse(localStorage.getItem("eventData"))||[];
+
+data.push({
+event:namaEvent,
+nama:nama,
+email:email,
+tanggal:new Date().toLocaleString()
+});
+
+localStorage.setItem("eventData",JSON.stringify(data));
+
+notifEvent.innerHTML="✅ Berhasil daftar: <b>"+namaEvent+"</b>";
+}
+  /* ================= BOOK DATA ================= */
+
+let books = [
+{
+id:1,
+judul:"Laut Bercerita",
+penulis:"Leila S. Chudori",
+sinopsis:"Novel yang mengangkat kisah aktivis mahasiswa di masa Orde Baru, penuh emosi, kehilangan, dan perjuangan.",
+},
+{
+id:2,
+judul:"Filosofi Teras",
+penulis:"Henry Manampiring",
+sinopsis:"Buku self improvement berbasis Stoisisme untuk menghadapi kehidupan modern dengan lebih tenang.",
+},
+{
+id:3,
+judul:"Perahu Kertas",
+penulis:"Dee Lestari",
+sinopsis:"Kisah cinta, mimpi, dan perjalanan menemukan jati diri melalui seni dan tulisan.",
+}
+];
+
+/* ================= LOAD BOOK LIST ================= */
+
+function loadBooks(){
+let html="";
+
+books.forEach(b=>{
+html+=`
+<div class="book-card" onclick="showBook(${b.id})">
+<h3>${b.judul}</h3>
+<p>${b.penulis}</p>
+</div>
+`;
+});
+
+document.getElementById("bookList").innerHTML=html;
+}
+
+loadBooks();
+
+/* ================= SHOW BOOK DETAIL ================= */
+
+function showBook(id){
+
+let book = books.find(b=>b.id===id);
+
+let html=`
+<div class="book-detail">
+<h2>${book.judul}</h2>
+<p><b>Penulis:</b> ${book.penulis}</p>
+
+<h3>Sinopsis</h3>
+<p>${book.sinopsis}</p>
+
+<div class="review-box">
+<h3>User Reviews</h3>
+
+<textarea id="reviewText" placeholder="Tulis review..." rows="3"></textarea>
+<button onclick="kirimReview(${book.id})">Kirim Review</button>
+
+<div id="reviewList"></div>
+</div>
+
+</div>
+`;
+
+document.getElementById("bookDetail").innerHTML=html;
+
+tampilkanReview(id);
+}
+
+/* ================= REVIEW SYSTEM ================= */
+
+function kirimReview(bookId){
+
+let user = localStorage.getItem("activeUser");
+
+if(!user){
+alert("Harus login dulu!");
+return;
+}
+
+let text = document.getElementById("reviewText").value;
+
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+reviews.push({
+bookId:bookId,
+user:user,
+text:text,
+tanggal:new Date().toLocaleString()
+});
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+document.getElementById("reviewText").value="";
+tampilkanReview(bookId);
+}
+
+function tampilkanReview(bookId){
+
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+let html="";
+
+reviews
+.filter(r=>r.bookId===bookId)
+.reverse()
+.forEach(r=>{
+html+=`
+<div class="review-item">
+<b>${r.user}</b>
+<p>${r.text}</p>
+<small>${r.tanggal}</small>
+</div>
+`;
+});
+
+document.getElementById("reviewList").innerHTML=html;
+}
+    
 </script>
 
 </body>
