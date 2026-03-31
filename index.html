@@ -417,8 +417,13 @@ border:1px solid var(--warm-gold);
 <input type="text" id="searchBook" placeholder="Cari buku..." onkeyup="searchBooks()">
 
         <h3>Tambah Buku</h3>
+let user = JSON.parse(localStorage.getItem("activeUser"));
 
-<form onsubmit="tambahBuku(event)">
+if(!user || user.role !== "admin"){
+alert("Hanya admin yang bisa menambahkan buku!");
+return;
+}
+<form id="adminBookForm" onsubmit="tambahBuku(event)">
 <input type="text" id="judulBuku" placeholder="Judul Buku" required>
 <input type="text" id="penulisBuku" placeholder="Penulis" required>
 <textarea id="sinopsisBuku" placeholder="Sinopsis" required></textarea>
@@ -574,12 +579,9 @@ document.getElementById("registerError").innerText="Email sudah terdaftar!";
 return;
 }
 
-users.push({nama,email,password});
-localStorage.setItem("users",JSON.stringify(users));
+let role = (email === "admin@Run4kaLa.com") ? "admin" : "user";
 
-alert("Registrasi berhasil! Silakan login.");
-window.close();
-}
+users.push({nama,email,password,role});
 <\/script>
 
 </body>
@@ -667,8 +669,8 @@ e.target.reset();
 
   /* ================= USER SESSION ================= */
 
-function setActiveUser(email){
-localStorage.setItem("activeUser", email);
+function setActiveUser(user){
+localStorage.setItem("activeUser", JSON.stringify(user));
 }
 
 /* ================= UPDATE LOGIN ================= */
@@ -684,7 +686,7 @@ loginError.innerText="Email atau password salah!";
 return;
 }
 
-setActiveUser(email);
+setActiveUser(user);
 alert("Login berhasil!");
 authModal.style.display="none";
 }
@@ -932,6 +934,18 @@ reader.readAsDataURL(file);
 reader.onload(); // tanpa cover
 }
 }
+    function checkAdminAccess(){
+
+let user = JSON.parse(localStorage.getItem("activeUser"));
+
+if(!user || user.role !== "admin"){
+document.getElementById("adminBookForm").style.display = "none";
+}else{
+document.getElementById("adminBookForm").style.display = "block";
+}
+
+}
+    checkAdminAccess();
     
 </script>
 
