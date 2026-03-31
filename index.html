@@ -335,6 +335,9 @@ border:1px solid var(--warm-gold);
     margin-top:10px;
     border-left:3px solid var(--warm-gold);
 }
+    #searchBook{
+    margin-bottom:20px;
+}
     
 </style>
 </head>
@@ -411,12 +414,25 @@ border:1px solid var(--warm-gold);
     <section class="section" id="books">
 <h2>Book Collection</h2>
 
+<input type="text" id="searchBook" placeholder="Cari buku..." onkeyup="searchBooks()">
+
+        <h3>Tambah Buku</h3>
+
+<form onsubmit="tambahBuku(event)">
+<input type="text" id="judulBuku" placeholder="Judul Buku" required>
+<input type="text" id="penulisBuku" placeholder="Penulis" required>
+<textarea id="sinopsisBuku" placeholder="Sinopsis" required></textarea>
+
+<input type="file" id="coverBuku" accept="image/*">
+
+<button type="submit">Tambah Buku</button>
+</form>
+        
 <div id="bookList"></div>
 
 <div id="bookDetail" style="margin-top:40px;"></div>
-
 </section>
-
+    
   <section class="section" id="forum">
 <h2>Community Forum</h2>
 
@@ -746,35 +762,32 @@ notifEvent.innerHTML="✅ Berhasil daftar: <b>"+namaEvent+"</b>";
 }
   /* ================= BOOK DATA ================= */
 
-let books = [
+let books = JSON.parse(localStorage.getItem("books")) || [
 {
 id:1,
 judul:"Laut Bercerita",
 penulis:"Leila S. Chudori",
-sinopsis:"Novel yang mengangkat kisah aktivis mahasiswa di masa Orde Baru, penuh emosi, kehilangan, dan perjuangan.",
+sinopsis:"Novel yang mengangkat kisah aktivis mahasiswa di masa Orde Baru.",
+cover:""
 },
 {
 id:2,
 judul:"Filosofi Teras",
 penulis:"Henry Manampiring",
-sinopsis:"Buku self improvement berbasis Stoisisme untuk menghadapi kehidupan modern dengan lebih tenang.",
-},
-{
-id:3,
-judul:"Perahu Kertas",
-penulis:"Dee Lestari",
-sinopsis:"Kisah cinta, mimpi, dan perjalanan menemukan jati diri melalui seni dan tulisan.",
+sinopsis:"Buku Stoisisme modern.",
+cover:""
 }
 ];
 
 /* ================= LOAD BOOK LIST ================= */
 
-function loadBooks(){
+function renderBooks(data){
 let html="";
 
-books.forEach(b=>{
+data.forEach(b=>{
 html+=`
 <div class="book-card" onclick="showBook(${b.id})">
+<img src="${b.cover || 'https://via.placeholder.com/150'}" style="width:100%;border-radius:10px;margin-bottom:10px;">
 <h3>${b.judul}</h3>
 <p>${b.penulis}</p>
 </div>
@@ -782,6 +795,10 @@ html+=`
 });
 
 document.getElementById("bookList").innerHTML=html;
+}
+
+function loadBooks(){
+renderBooks(books);
 }
 
 loadBooks();
@@ -794,9 +811,12 @@ let book = books.find(b=>b.id===id);
 
 let html=`
 <div class="book-detail">
+
+<img src="${book.cover || 'https://via.placeholder.com/200'}"
+style="width:200px;border-radius:10px;margin-bottom:15px;">
+
 <h2>${book.judul}</h2>
 <p><b>Penulis:</b> ${book.penulis}</p>
-
 <h3>Sinopsis</h3>
 <p>${book.sinopsis}</p>
 
@@ -865,6 +885,52 @@ html+=`
 });
 
 document.getElementById("reviewList").innerHTML=html;
+}
+    function searchBooks(){
+let keyword = document.getElementById("searchBook").value.toLowerCase();
+
+let filtered = books.filter(b =>
+b.judul.toLowerCase().includes(keyword) ||
+b.penulis.toLowerCase().includes(keyword)
+);
+
+renderBooks(filtered);
+}
+    function tambahBuku(e){
+e.preventDefault();
+
+let judul = document.getElementById("judulBuku").value;
+let penulis = document.getElementById("penulisBuku").value;
+let sinopsis = document.getElementById("sinopsisBuku").value;
+let file = document.getElementById("coverBuku").files[0];
+
+let reader = new FileReader();
+
+reader.onload = function(){
+let coverBase64 = reader.result;
+
+let newBook = {
+id: Date.now(),
+judul,
+penulis,
+sinopsis,
+cover: coverBase64
+};
+
+books.push(newBook);
+
+localStorage.setItem("books", JSON.stringify(books));
+
+loadBooks();
+
+e.target.reset();
+};
+
+if(file){
+reader.readAsDataURL(file);
+}else{
+reader.onload(); // tanpa cover
+}
 }
     
 </script>
