@@ -410,17 +410,12 @@ border:1px solid var(--warm-gold);
     src="https://www.youtube.com/embed/phRZKH1tQsQ?si=_I8tcmfsz3kQLNib"
     allowfullscreen></iframe>
 </section>
-
-    <section class="section" id="books">
+    
+<section class="section" id="books">
 <h2>Book Collection</h2>
 
 <input type="text" id="searchBook" placeholder="Cari buku..." onkeyup="searchBooks()">
 
-<div id="bookList"></div>
-
-<div id="bookDetail" style="margin-top:40px;"></div>
-</section>
-                
 <div id="bookList"></div>
 
 <div id="bookDetail" style="margin-top:40px;"></div>
@@ -567,9 +562,12 @@ document.getElementById("registerError").innerText="Email sudah terdaftar!";
 return;
 }
 
-let role = (email === "admin@Run4kaLa.com") ? "admin" : "user";
+users.push({nama,email,password});
+localStorage.setItem("users",JSON.stringify(users));
 
-users.push({nama,email,password,role});
+alert("Registrasi berhasil! Silakan login.");
+window.close();
+}
 <\/script>
 
 </body>
@@ -657,8 +655,8 @@ e.target.reset();
 
   /* ================= USER SESSION ================= */
 
-function setActiveUser(user){
-localStorage.setItem("activeUser", JSON.stringify(user));
+function setActiveUser(email){
+localStorage.setItem("activeUser", email);
 }
 
 /* ================= UPDATE LOGIN ================= */
@@ -674,7 +672,7 @@ loginError.innerText="Email atau password salah!";
 return;
 }
 
-setActiveUser(user);
+setActiveUser(email);
 alert("Login berhasil!");
 authModal.style.display="none";
 }
@@ -750,22 +748,26 @@ localStorage.setItem("eventData",JSON.stringify(data));
 
 notifEvent.innerHTML="✅ Berhasil daftar: <b>"+namaEvent+"</b>";
 }
-  /* ================= BOOK DATA ================= */
+    /* ================= BOOK DATA ================= */
 
-let books = JSON.parse(localStorage.getItem("books")) || [
+let books = [
 {
 id:1,
 judul:"Laut Bercerita",
 penulis:"Leila S. Chudori",
-sinopsis:"Novel yang mengangkat kisah aktivis mahasiswa di masa Orde Baru.",
-cover:""
+sinopsis:"Novel yang mengangkat kisah aktivis mahasiswa di masa Orde Baru, penuh emosi, kehilangan, dan perjuangan.",
 },
 {
 id:2,
 judul:"Filosofi Teras",
 penulis:"Henry Manampiring",
-sinopsis:"Buku Stoisisme modern.",
-cover:""
+sinopsis:"Buku self improvement berbasis Stoisisme untuk menghadapi kehidupan modern dengan lebih tenang.",
+},
+{
+id:3,
+judul:"Perahu Kertas",
+penulis:"Dee Lestari",
+sinopsis:"Kisah cinta, mimpi, dan perjalanan menemukan jati diri melalui seni dan tulisan.",
 }
 ];
 
@@ -801,12 +803,9 @@ let book = books.find(b=>b.id===id);
 
 let html=`
 <div class="book-detail">
-
-<img src="${book.cover || 'https://via.placeholder.com/200'}"
-style="width:200px;border-radius:10px;margin-bottom:15px;">
-
 <h2>${book.judul}</h2>
 <p><b>Penulis:</b> ${book.penulis}</p>
+
 <h3>Sinopsis</h3>
 <p>${book.sinopsis}</p>
 
@@ -886,42 +885,7 @@ b.penulis.toLowerCase().includes(keyword)
 
 renderBooks(filtered);
 }
- 
-e.preventDefault();
-
-let judul = document.getElementById("judulBuku").value;
-let penulis = document.getElementById("penulisBuku").value;
-let sinopsis = document.getElementById("sinopsisBuku").value;
-let file = document.getElementById("coverBuku").files[0];
-
-let reader = new FileReader();
-
-reader.onload = function(){
-let coverBase64 = reader.result;
-
-let newBook = {
-id: Date.now(),
-judul,
-penulis,
-sinopsis,
-cover: coverBase64
-};
-
-books.push(newBook);
-
-localStorage.setItem("books", JSON.stringify(books));
-
-loadBooks();
-
-e.target.reset();
-};
-
-if(file){
-reader.readAsDataURL(file);
-}else{
-reader.onload(); // tanpa cover
-}
-    
+  
 </script>
 
 </body>
