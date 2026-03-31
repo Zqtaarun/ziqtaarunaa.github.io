@@ -416,20 +416,11 @@ border:1px solid var(--warm-gold);
 
 <input type="text" id="searchBook" placeholder="Cari buku..." onkeyup="searchBooks()">
 
-        <h3>Tambah Buku</h3>
-let user = JSON.parse(localStorage.getItem("activeUser"));
-        
+<div id="bookList"></div>
 
-<form id="adminBookForm" onsubmit="tambahBuku(event)">
-<input type="text" id="judulBuku" placeholder="Judul Buku" required>
-<input type="text" id="penulisBuku" placeholder="Penulis" required>
-<textarea id="sinopsisBuku" placeholder="Sinopsis" required></textarea>
-
-<input type="file" id="coverBuku" accept="image/*">
-
-<button type="submit">Tambah Buku</button>
-</form>
-        
+<div id="bookDetail" style="margin-top:40px;"></div>
+</section>
+                
 <div id="bookList"></div>
 
 <div id="bookDetail" style="margin-top:40px;"></div>
@@ -895,11 +886,7 @@ b.penulis.toLowerCase().includes(keyword)
 
 renderBooks(filtered);
 }
-    if(!user || user.role !== "admin"){
-alert("Hanya admin yang bisa menambahkan buku!");
-return;
-}
-    function tambahBuku(e){
+ 
 e.preventDefault();
 
 let judul = document.getElementById("judulBuku").value;
@@ -934,19 +921,6 @@ reader.readAsDataURL(file);
 }else{
 reader.onload(); // tanpa cover
 }
-}
-    function checkAdminAccess(){
-
-let user = JSON.parse(localStorage.getItem("activeUser"));
-
-if(!user || user.role !== "admin"){
-document.getElementById("adminBookForm").style.display = "none";
-}else{
-document.getElementById("adminBookForm").style.display = "block";
-}
-
-}
-    checkAdminAccess();
     
 </script>
 
