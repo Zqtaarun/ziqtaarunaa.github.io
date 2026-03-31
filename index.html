@@ -417,11 +417,8 @@ border:1px solid var(--warm-gold);
 <input type="text" id="searchBook" placeholder="Cari buku..." onkeyup="searchBooks()">
 
         <h3>Tambah Buku</h3>
-if(!user || user.role !== "admin"){
-alert("Hanya admin yang bisa menambahkan buku!");
-return;
-}
 let user = JSON.parse(localStorage.getItem("activeUser"));
+        
 
 <form id="adminBookForm" onsubmit="tambahBuku(event)">
 <input type="text" id="judulBuku" placeholder="Judul Buku" required>
@@ -897,6 +894,10 @@ b.penulis.toLowerCase().includes(keyword)
 );
 
 renderBooks(filtered);
+}
+    if(!user || user.role !== "admin"){
+alert("Hanya admin yang bisa menambahkan buku!");
+return;
 }
     function tambahBuku(e){
 e.preventDefault();
